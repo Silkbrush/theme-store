@@ -20,6 +20,8 @@ body:
     id: repo
     attributes:
       label: What is the repository's URL?
+      description: >
+        We'll use this to copy your files to the theme store.
     validations:
       required: true
   - type: textarea
@@ -27,41 +29,47 @@ body:
     attributes:
       label: What files should be copied?
       description: >
-        Separate each file using new lines.
+        Separate each file using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: copy_folder
     attributes:
       label: What folders should be copied?
       description: >
-        Separate each folder using new lines.
+        Separate each folder using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: load_chrome
     attributes:
       label: What files should be loaded for the userChrome?
       description: >
-        Separate each file using new lines.
+        Separate each file using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: load_content
     attributes:
       label: What files should be loaded for the userContent?
       description: >
-        Separate each file using new lines.
+        Separate each file using new lines. Leave empty if not applicable.
     validations:
-      required: true
-  - type: checkboxes
-    id: copy_readme
+      required: false
+  - type: textarea
+    id: readme
     attributes:
-      label: Should we copy the README file?
+      label: What should we put in the README?
       description: >
-        If unchecked, we won't copy the repository's README file.
-      options:
-        - label: Yes, please copy it to the theme store.
+        Supports markdown. If left empty, we won't set a README file for your theme.
+  - type: textarea
+    id: domains
+    attributes:
+      label: What domains do your userContent file target?
+      description: >
+        Separate each domain using new lines. Leave empty if not applicable.
+    validations:
+      required: false
   - type: input
     id: author
     attributes:
