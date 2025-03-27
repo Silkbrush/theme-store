@@ -27,33 +27,33 @@ body:
     attributes:
       label: What files should be copied?
       description: >
-        Separate each file using new lines.
+        Separate each file using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: copy_folder
     attributes:
       label: What folders should be copied?
       description: >
-        Separate each folder using new lines.
+        Separate each folder using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: load_chrome
     attributes:
       label: What files should be loaded for the userChrome?
       description: >
-        Separate each file using new lines.
+        Separate each file using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: load_content
     attributes:
       label: What files should be loaded for the userContent?
       description: >
-        Separate each file using new lines.
+        Separate each file using new lines. Leave empty if not applicable.
     validations:
-      required: true
+      required: false
   - type: textarea
     id: readme
     attributes:
