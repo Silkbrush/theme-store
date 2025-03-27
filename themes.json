@@ -1,15 +1,28 @@
 {
-  "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
-    "type": 0,
-    "name": "Natsumi Browser",
-    "description": "A userchrome for Zen Browser that makes things flow.",
-    "author": "Green",
-    "authorUrl": "https://github.com/greeeen-dev",
-    "homepage": "https://github.com/greeeen-dev/natsumi-browser",
-    "version": "3.0.2",
-    "createdAt": 0,
-    "updatedAt": 0,
-    "tags": [],
-    "domains": []
-  }
+    "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
+        "type": 0,
+        "name": "Natsumi Browser",
+        "description": "A userchrome for Zen Browser that makes things flow.",
+        "author": "Green",
+        "authorUrl": "https://github.com/greeeen-dev",
+        "homepage": "https://github.com/greeeen-dev/natsumi-browser",
+        "version": "3.0.2",
+        "createdAt": 0,
+        "updatedAt": 0,
+        "tags": [],
+        "domains": []
+    },
+    "f668b365-9a3b-4498-999b-eabee698eadb": {
+        "type": 0,
+        "name": "Nebula",
+        "description": "A glassmorphism inspired theme which enhances the UI of zen browser.",
+        "author": "JustAdumbPrsn",
+        "authorUrl": "https://github.com/JustAdumbPrsn",
+        "homepage": "https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser",
+        "version": "v2",
+        "createdAt": 1743105388,
+        "updatedAt": 1743105388,
+        "tags": [],
+        "domains": ""
+    }
 }

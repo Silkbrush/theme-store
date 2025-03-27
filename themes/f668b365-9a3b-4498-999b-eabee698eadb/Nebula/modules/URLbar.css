@@ -1,0 +1,137 @@
+/* === FLOATING URL BAR ANIMATION/BLUR === */
+#urlbar[open] {
+  margin-top: 3px !important;
+  padding-top: 6px !important;
+  position: fixed !important;
+  top: 20% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 50vw !important;
+  max-width: 600px !important;
+  min-height: 72px !important;
+  z-index: 9999 !important;
+  border-radius: 13px !important;
+  background: rgba(0, 0, 0, 0) !important;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(7px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  transition: height 0.2s ease-out !important;
+}
+
+#urlbar[open] #urlbar-results {
+  position: relative !important;
+  width: 100% !important;
+  top: 100% !important;
+  max-height: 400px !important;
+  overflow-y: auto !important;
+  opacity: 1 !important;
+  transition: max-height 0.2s ease-out !important;
+}
+
+/* Blur background when URL bar opens, scoped to chrome */
+#browser:has(#urlbar[open]) .browserContainer {
+  filter: blur(2rem) brightness(70%) saturate(180%) !important;
+  backdrop-filter: blur(2rem) contrast(90%) brightness(30%) !important;
+  opacity: 0.85 !important;
+  scale: 1.11 !important;
+  transition: filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35), 
+              opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35), 
+              backdrop-filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35), 
+              scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+}
+
+/* Reset blur only when URL bar is closed, scoped to chrome */
+.browserContainer:not(:has(#urlbar[open])) {
+  filter: blur(0px) brightness(100%) saturate(100%) !important;
+  backdrop-filter: none !important; /* Changed from blur(0px) to none */
+  opacity: 1 !important;
+  scale: 1 !important;
+  transition: filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35), 
+              opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35), 
+              backdrop-filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35), 
+              scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+}
+
+/* Floating urlbar background */
+#urlbar-background {
+  background: rgba(0, 0, 0, 0.42) !important;
+  border-radius: 12px !important;
+  padding: 10px !important;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.3) !important;
+  transition: background 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+/* Compact mode fixes */
+#browser[sidebar="compact"] #urlbar[open] {
+  left: 50% !important;
+  transform: translateX(-50%) scale(1) !important;
+}
+
+#urlbar-zoom-button {
+  left: 30px !important;
+}
+#urlbar[open] #urlbar-zoom-button {
+  left: 0 !important;
+}
+
+:root[zen-compact-mode="true"] #urlbar[open] {
+  transform: translateX(-50%) scale(1) !important;
+}
+
+#urlbar[open] #urlbar-results>*:nth-child(n+6) {
+  display: none !important;
+}
+/*------------ URLbar loading animation --------------*/
+/* Target the URL bar */
+#urlbar {
+  .urlbar-input-container {
+    border-radius: 12px !important;
+    overflow: hidden;
+  }
+  
+  .urlbar-input-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg,  
+    #000000,  
+    #222222,  
+    #444444,  
+    #ffffff, /* White highlight */
+    #222222,  
+    #000000  
+); 
+    background-size: 400% 400%;
+    border-radius: 12px !important;
+    clip-path: inset(0 round 12px);
+    animation: urlbar-loading-gradient 3s linear infinite;
+    animation-play-state: paused;
+    opacity: 0;
+    filter: blur(20px) brightness(1); /* Reduced blur */
+    transition: opacity 0.3s ease-in-out;
+    z-index: 0; /* Raised to prevent hiding behind */
+    pointer-events: none;
+  }
+}
+
+#main-window:has(.tabbrowser-tab[selected][busy]) .urlbar-input-container::before {
+  animation-play-state: running;
+  opacity: 0.85;
+}
+
+/* Apply gradient when the selected tab is busy (loading) */
+#main-window:has(.tabbrowser-tab[selected][busy]) .urlbar-input-container::before {
+  animation-play-state: running;
+  opacity: 0.485;
+}
+
+/* Keyframes for the smoother animation (like Mini Player) */
+@keyframes urlbar-loading-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 0%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
+  100% { background-position: 0% 50%; }
+}

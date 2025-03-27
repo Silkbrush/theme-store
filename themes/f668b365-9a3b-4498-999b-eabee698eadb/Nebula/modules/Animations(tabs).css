@@ -1,0 +1,45 @@
+/* Credit: Zen Internet by Sameerasw */
+
+/* ==== Animations(tabs) ================================================================================= */
+/* Tab panels animation */
+#tabbrowser-tabpanels > hbox:not([zen-split="true"]):not(:has(.zen-glance-background)) {
+    transition: opacity 0.3s ease-out, scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+    scale: 0.9 !important;
+    opacity: 0;
+}
+
+#tabbrowser-tabpanels > hbox.deck-selected:not([zen-split="true"]) {
+    scale: 1 !important;
+    opacity: 1 !important;
+}
+
+/* Website view animations */
+#browser:not(:has(.zen-glance-background)) #tabbrowser-tabpanels {
+    transition: opacity 0.5s ease-out !important;
+}
+
+/* Loading tab animation */
+tab[busy] {
+    scale: 0.95 !important;
+}
+
+tab[busy] .tab-background {
+    opacity: 0.3 !important;
+}
+
+/* Ctrl+Tab panel animations */
+#ctrlTab-panel {
+    --panel-background: var(--lwt-accent-color) !important;
+    transition: opacity 0.1s ease-out, scale 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;
+    scale: 0.7;
+}
+
+#ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])) {
+    scale: 1 !important;
+}
+
+/* Slot styling */
+slot:nth-child(1) {
+    border-radius: 1em !important;
+    padding: 0 !important;
+}
