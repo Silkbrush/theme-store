@@ -1,16 +1,68 @@
 name: Update theme
-description: Update your theme in the custom theme store!
+description: Update a theme in the custom theme store!
 title: "Update theme: "
 body:
   - type: input
-    id: theme
+    id: id
     attributes:
-      label: Theme ID
+      label: What is the theme's ID?
     validations:
       required: true
   - type: input
+    id: description
+    attributes:
+      label: What is the theme's new description?
+      description: >
+        If left empty, we'll use the current description.
+  - type: input
     id: version
     attributes:
-      label: New version number
+      label: What is the theme's new version?
     validations:
       required: true
+  - type: textarea
+    id: copy_file
+    attributes:
+      label: What files should be copied?
+      description: >
+        Separate each file using new lines. If left empty, we'll use the current files.
+    validations:
+      required: false
+  - type: textarea
+    id: copy_folder
+    attributes:
+      label: What folders should be copied?
+      description: >
+        Separate each file using new lines. If left empty, we'll use the current folders.
+    validations:
+      required: false
+  - type: textarea
+    id: load_chrome
+    attributes:
+      label: What files should be loaded for the userChrome?
+      description: >
+        Separate each file using new lines. If left empty, we'll use the current files.
+    validations:
+      required: false
+  - type: textarea
+    id: load_content
+    attributes:
+      label: What files should be loaded for the userContent?
+      description: >
+        Separate each file using new lines. If left empty, we'll use the current files.
+    validations:
+      required: false
+  - type: textarea
+    id: readme
+    attributes:
+      label: What should we put in the README?
+      description: >
+        Supports markdown. If left empty, we'll use the current README.
+  - type: textarea
+    id: domains
+    attributes:
+      label: What domains do your userContent file target?
+      description: >
+        e.g. google.com, youtube.com. Separate each domain using new lines. If left empty, we'll use the current domains.
+    validations:
+      required: false

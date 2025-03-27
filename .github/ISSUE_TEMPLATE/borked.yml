@@ -1,0 +1,25 @@
+name: Report borked theme
+description: If a theme is broken, report it here!
+title: "BORKED: "
+type: bug
+body:
+  - type: input
+    id: theme
+    attributes:
+      label: Theme name/ID
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Your Zen Browser version
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: >
+        Please provide as much detail as possible. You may include images.
+    validations:
+      required: true

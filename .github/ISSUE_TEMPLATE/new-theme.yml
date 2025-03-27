@@ -79,7 +79,7 @@ body:
     attributes:
       label: What domains do your userContent file target?
       description: >
-        Separate each domain using new lines. Leave empty if not applicable.
+        e.g. google.com, youtube.com. Separate each domain using new lines. Leave empty if not applicable.
     validations:
       required: false
   - type: input
