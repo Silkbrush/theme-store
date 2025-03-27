@@ -1,0 +1,14 @@
+name: Submit theme
+description: Submit a theme to the custom theme store!
+body:
+  - type: dropdown
+    id: submission_type
+    attributes:
+      label: What is your type of submission?
+      description: \
+        Bundle: test
+        Theme: test
+      options:
+        - Bundle
+        - Theme
+        - Page
