@@ -17,6 +17,44 @@ body:
     validations:
       required: true
   - type: input
+    id: repo
+    attributes:
+      label: What is the repository's URL?
+    validations:
+      required: true
+  - type: textarea
+    id: copy_file
+    attributes:
+      label: What files should be copied?
+      description: >
+        Separate each file using new lines.
+    validations:
+      required: true
+  - type: textarea
+    id: copy_folder
+    attributes:
+      label: What folders should be copied?
+      description: >
+        Separate each folder using new lines.
+    validations:
+      required: true
+  - type: textarea
+    id: load_chrome
+    attributes:
+      label: What files should be loaded for the userChrome?
+      description: >
+        Separate each file using new lines.
+    validations:
+      required: true
+  - type: textarea
+    id: load_content
+    attributes:
+      label: What files should be loaded for the userContent?
+      description: >
+        Separate each file using new lines.
+    validations:
+      required: true
+  - type: input
     id: author
     attributes:
       label: What should we call you on the theme store?
