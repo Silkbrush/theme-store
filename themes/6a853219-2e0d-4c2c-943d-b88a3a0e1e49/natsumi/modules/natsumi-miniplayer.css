@@ -1,0 +1,153 @@
+/*
+
+Natsumi Browser - A userchrome for Zen Browser that makes things flow.
+
+Copyright (c) 2024-present Green (@greeeen-dev)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Natsumi Browser uses code from others. The link to the original projects or
+their author(s) have been provided above the used code.
+
+*/
+
+/* ==== "Miniplayer" ==== */
+
+@keyframes fadein-animation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+#zen-media-current-time, #zen-media-duration {
+  font-variant-numeric: tabular-nums;
+}
+
+#zen-media-controls-toolbar {
+  /*noinspection CssInvalidFunction*/
+  & > toolbaritem {
+    background-color: var(--natsumi-mat-hz-background) !important;
+    backdrop-filter: saturate(var(--natsumi-mat-hz-saturation)) contrast(var(--natsumi-mat-hz-contrast)) !important;
+
+    @media (-moz-bool-pref: "natsumi.miniplayer.blur-fix") {
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        backdrop-filter: blur(15px);
+        pointer-events: none;
+      }
+    }
+
+    /*noinspection CssInvalidFunction*/
+    &::after {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background-color: light-dark(var(--zen-colors-primary), var(--zen-primary-color));
+      mask-image: radial-gradient(closest-side, black, transparent);
+      top: -75%;
+      left: -75%;
+      opacity: 0;
+      transition: background-color 0.2s ease;
+      pointer-events: none;
+    }
+
+    @media (-moz-bool-pref: "natsumi.miniplayer.disable-accent") {
+      &::after {
+        display: none !important;
+      }
+    }
+
+    toolbarbutton {
+      z-index: 0 !important;
+    }
+  }
+
+  &:hover {
+    & > toolbaritem {
+      overflow: hidden;
+
+      &::after {
+        animation: fadein-animation 0.5s ease;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+
+  &:not(:hover) {
+    #zen-media-service-hbox {
+      padding-top: 0 !important;
+    }
+
+    & > toolbaritem {
+      &::before, &::after {
+        display: none;
+      }
+    }
+  }
+
+  #zen-media-service-hbox {
+    padding-top: 5px !important;
+    transition: padding 0.15s ease-in-out !important;
+  }
+
+  #zen-media-title {
+    font-size: 16px !important;
+  }
+
+  #zen-media-artist {
+    font-size: 10px !important;
+  }
+
+  #zen-media-info-vbox {
+    &::before {
+      display: none !important;
+    }
+  }
+
+  #zen-media-progress-bar {
+    &::-moz-range-thumb {
+      scale: 1;
+      transition: scale 0.2s ease;
+    }
+
+    &::-moz-range-track, &::-moz-range-progress {
+      transition: height 0.2s ease;
+    }
+
+    &:hover {
+      &::-moz-range-thumb {
+        scale: 1.4;
+      }
+
+      &::-moz-range-track, &::-moz-range-progress {
+        height: calc(var(--progress-height) + 2px) !important;
+      }
+    }
+  }
+}

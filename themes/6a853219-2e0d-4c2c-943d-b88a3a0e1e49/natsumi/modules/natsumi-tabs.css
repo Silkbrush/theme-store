@@ -1,0 +1,349 @@
+/*
+
+Natsumi Browser - A userchrome for Zen Browser that makes things flow.
+
+Copyright (c) 2024-present Green (@greeeen-dev)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Natsumi Browser uses code from others. The link to the original projects or
+their author(s) have been provided above the used code.
+
+*/
+
+/* ==== Tabs ==== */
+
+@keyframes essentials-select {
+  0% {
+    opacity: 0.2;
+    scale: 1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  100% {
+    opacity: 0;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    left: -10px;
+    top: -10px;
+    border-radius: 20px;
+  }
+}
+
+@keyframes backdrop-fadein {
+  0% {
+    backdrop-filter: saturate(0.5) contrast(0.5);
+  }
+
+  100% {
+    backdrop-filter: saturate(3) contrast(2);
+  }
+}
+
+@keyframes backdrop-with-blur-fadein {
+  0% {
+    backdrop-filter: saturate(0.5) contrast(0.5) blur(0);
+  }
+
+  100% {
+    backdrop-filter: saturate(3) contrast(2) blur(100px);
+  }
+}
+
+@keyframes essentials-select {
+  0% {
+    opacity: 0.2;
+    scale: 1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  100% {
+    opacity: 0;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    left: -10px;
+    top: -10px;
+    border-radius: 20px;
+  }
+}
+
+#zen-main-app-wrapper:not(:has(#zen-welcome)) {
+  /* Tab click animations */
+  #tabbrowser-tabs:not([movingtab]) {
+    .tabbrowser-tab {
+      transition: scale 0.2s ease !important;
+    }
+
+    .tabbrowser-tab:active {
+      scale: 0.96 !important;
+    }
+
+    .tabbrowser-tab:has(.tab-close-button:hover) {
+      scale: 1 !important;
+    }
+  }
+
+  /* Pinned and regular tabs */
+  #vertical-pinned-tabs-container, #tabbrowser-arrowscrollbox {
+    /*noinspection CssInvalidFunction*/
+    .tabbrowser-tab:not([zen-glance-tab]) {
+      --natsumi-tab-highlight-color: light-dark(var(--natsumi-primary-color), var(--natsumi-colors-primary));
+      --natsumi-tab-idle-width: 0;
+      --natsumi-tab-idle-opacity: 0;
+
+      &[usercontextid] {
+        @media not (-moz-bool-pref: "zen.workspaces.hide-default-container-indicator") {
+          --natsumi-tab-highlight-color: var(--identity-icon-color);
+          --natsumi-tab-idle-width: 40%;
+          --natsumi-tab-idle-opacity: 1;
+        }
+
+        &:not([zenDefaultUserContextId="true"]) {
+          --natsumi-tab-highlight-color: var(--identity-icon-color);
+          --natsumi-tab-idle-width: 40%;
+          --natsumi-tab-idle-opacity: 1;
+        }
+      }
+
+      &:has(.tab-close-button:hover) {
+        transition: opacity 0.2s ease !important;
+        --natsumi-tab-highlight-color: rgb(255, 100, 100);
+      }
+
+      & > .tab-stack > .tab-background {
+        transition: background-color 0.2s ease, backdrop-filter 0.2s ease !important;
+
+        .tab-context-line {
+          display: none !important;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: var(--natsumi-tab-idle-width);
+          height: calc(100% - var(--natsumi-tabs-blade-size-offset) - calc(var(--tab-block-margin) * 2));
+          opacity: var(--natsumi-tab-idle-opacity);
+          top: var(--natsumi-tabs-blade-position-offset);
+          left: var(--natsumi-tabs-blade-position-offset);
+          border: 2px solid var(--natsumi-tab-highlight-color);
+          background: color-mix(in srgb, var(--natsumi-tab-highlight-color) 40%, transparent);
+          border-radius: inherit;
+          mask-image: linear-gradient(to right, black, transparent 30%);
+          transition: width 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border 0.2s ease;
+
+          @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+            left: 0;
+            mask-image: linear-gradient(to right, black, transparent 40%);
+          }
+        }
+      }
+
+      &:hover {
+        & > .tab-stack > .tab-background {
+          &::after {
+            width: calc(100% - var(--natsumi-tabs-blade-size-offset) - calc(var(--tab-block-margin) * 2));
+            opacity: 1;
+          }
+        }
+      }
+
+      &[selected], &[visuallyselected] {
+        /*noinspection CssInvalidFunction*/
+        & > .tab-stack > .tab-background {
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) !important;
+          background-color: var(--natsumi-mat-hz-background) !important;
+          animation: backdrop-fadein 0.2s ease;
+
+          @media (-moz-bool-pref: "natsumi.sidebar.blur-tab-button") {
+            animation: backdrop-with-blur-fadein 0.2s ease;
+          }
+
+          animation-fill-mode: forwards;
+
+          &::after {
+            width: calc(100% - calc(var(--tab-block-margin) * 2));
+            height: calc(100% - calc(var(--tab-block-margin) * 2));
+            opacity: 1;
+            top: 0;
+            left: 0;
+
+            @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+              width: calc(100% - calc(var(--tab-block-margin) * 2));
+            }
+          }
+        }
+      }
+
+      &[multiselected] {
+        & > .tab-stack > .tab-background {
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.5) !important;
+
+          &::after {
+            width: calc(100% - calc(var(--tab-block-margin) * 2));
+            opacity: 1;
+
+            @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+              width: calc(100% - calc(var(--tab-block-margin) * 2));
+            }
+          }
+        }
+      }
+
+      &:has(.tab-close-button:active) {
+        opacity: 0.5;
+      }
+    }
+
+    /* Split view tabs */
+    tab-group[split-view-group] {
+      .tabbrowser-tab {
+        & > .tab-stack > .tab-background {
+          &::after {
+            mask-image: linear-gradient(to right, black, transparent 60%);
+          }
+        }
+      }
+    }
+  }
+
+  /* Essentials tabs */
+  #tabbrowser-tabs:not([movingtab]) {
+    #zen-essentials-container {
+      .tabbrowser-tab {
+        &:active {
+          scale: 0.9 !important;
+        }
+      }
+    }
+  }
+
+  #zen-essentials-container {
+    overflow: visible !important;
+
+    /*noinspection CssInvalidFunction*/
+    .tabbrowser-tab {
+      overflow: visible !important;
+      --natsumi-tab-highlight-color: light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+      --natsumi-tab-line-color: rgba(0, 0, 0, 0);
+
+      &[usercontextid] {
+        @media not (-moz-bool-pref: "zen.workspaces.hide-default-container-indicator") {
+          --natsumi-tab-highlight-color: var(--identity-icon-color);
+          --natsumi-tab-line-color: var(--identity-icon-color);
+        }
+
+        &:not([zenDefaultUserContextId="true"]) {
+          --natsumi-tab-highlight-color: var(--identity-icon-color);
+          --natsumi-tab-line-color: var(--identity-icon-color);
+        }
+      }
+
+      & > .tab-stack > .tab-background {
+        transition: background-color 0.2s ease !important;
+        border: 2px solid var(--natsumi-tab-highlight-color) !important;
+
+        .tab-context-line {
+          display: none !important;
+        }
+      }
+
+      &:not(:hover) {
+        & > .tab-stack > .tab-background {
+          background-color: transparent !important;
+        }
+      }
+
+      .tab-icon-image {
+        transition: filter 0.2s ease !important;
+      }
+
+      &:hover {
+        .tab-icon-image {
+          filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        & > .tab-stack > .tab-background {
+          background-color: var(--tab-hover-background-color) !important;
+        }
+      }
+
+      &[selected], &[visuallyselected] {
+        .tab-icon-stack::after {
+          content: "";
+          position: absolute;
+          width: 150%;
+          height: 2px;
+          border-radius: 1px;
+          background: var(--natsumi-tab-line-color);
+          left: -25%;
+          bottom: -8px;
+        }
+
+        .tab-icon-image {
+          filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        & > .tab-stack > .tab-background {
+          border: none !important;
+
+          @media (-moz-bool-pref: "zen.theme.essentials-favicon-bg") {
+            &::before {
+              opacity: 0.6 !important;
+            }
+
+            &::after {
+              filter: saturate(150%) blur(15px) !important;
+            }
+          }
+
+          @media not (-moz-bool-pref: "zen.theme.essentials-favicon-bg") {
+            background-color: var(--natsumi-mat-hz-background) !important;
+            animation: backdrop-fadein 0.2s ease;
+            animation-fill-mode: forwards;
+          }
+        }
+      }
+
+      &[selected]:not(:active) {
+        .tab-stack {
+          /*noinspection CssInvalidFunction*/
+          &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: light-dark(var(--natsumi-colors-primary), var(--natsumi-primary-color)) !important;
+            border-radius: 10px;
+            animation: essentials-select 0.25s ease-out;
+            animation-fill-mode: forwards;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+}
