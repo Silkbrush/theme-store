@@ -54,7 +54,7 @@ body:
         Separate each file using new lines.
     validations:
       required: true
-  - type: markdown
+  - type: textarea
     id: readme
     attributes:
       label: What should we put in the README?
