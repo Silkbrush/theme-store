@@ -59,7 +59,7 @@ body:
     attributes:
       label: What should we put in the README?
       description: >
-        If left empty, we won't set a README file for your theme.
+        Supports markdown. If left empty, we won't set a README file for your theme.
   - type: input
     id: author
     attributes:
