@@ -21,6 +21,14 @@ body:
       description: >
         If left empty, we'll use 1.0.0 as the default.
   - type: input
+    id: supported
+    attributes:
+      label: What is the latest version of Zen Browser the theme supports?
+      description: >
+        e.g. 1.10.2b
+    validations:
+        required: true
+  - type: input
     id: repo
     attributes:
       label: What is the repository's URL?
