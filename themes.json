@@ -2,9 +2,9 @@
   "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
     "type": 0,
     "name": "Natsumi Browser",
-    "description": "A userchrome for Zen Browser that makes things flow."
+    "description": "A userchrome for Zen Browser that makes things flow.",
     "author": "Green",
-    "author_url": "https://github.com/greeeen-dev",
+    "authorUrl": "https://github.com/greeeen-dev",
     "homepage": "https://github.com/greeeen-dev/natsumi-browser",
     "version": "3.0.2",
     "createdAt": 0,
