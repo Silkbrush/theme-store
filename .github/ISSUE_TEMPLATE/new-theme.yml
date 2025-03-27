@@ -62,6 +62,14 @@ body:
       label: What should we put in the README?
       description: >
         Supports markdown. If left empty, we won't set a README file for your theme.
+  - type: textarea
+    id: load_content
+    attributes:
+      label: What domains do your userContent file target?
+      description: >
+        Separate each domain using new lines. Leave empty if not applicable.
+    validations:
+      required: false
   - type: input
     id: author
     attributes:
