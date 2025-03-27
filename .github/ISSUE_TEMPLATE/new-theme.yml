@@ -13,4 +13,5 @@ body:
         - Bundle
         - Theme
         - Page
-    required: true
+    validations:
+      required: true
