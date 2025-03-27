@@ -54,14 +54,14 @@ body:
         Separate each file using new lines.
     validations:
       required: true
-  - type: dropdown
+  - type: checkboxes
     id: copy_readme
     dropdown:
       label: Should we copy the README file?
       description: >
         If unchecked, we won't copy the repository's README file.
       options:
-        - Yes, please copy it to the theme store.
+        - label: Yes, please copy it to the theme store.
   - type: input
     id: author
     attributes:
