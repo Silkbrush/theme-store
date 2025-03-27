@@ -13,3 +13,4 @@ body:
         - Bundle
         - Theme
         - Page
+    required: true
