@@ -1,15 +1,32 @@
 {
-  "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
-    "type": 0,
-    "name": "Natsumi Browser",
-    "description": "A userchrome for Zen Browser that makes things flow.",
-    "author": "Green",
-    "authorUrl": "https://github.com/greeeen-dev",
-    "homepage": "https://github.com/greeeen-dev/natsumi-browser",
-    "version": "3.0.2",
-    "createdAt": 0,
-    "updatedAt": 0,
-    "tags": [],
-    "domains": []
-  }
+    "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
+        "type": 0,
+        "name": "Natsumi Browser",
+        "description": "A userchrome for Zen Browser that makes things flow.",
+        "author": "Green",
+        "authorUrl": "https://github.com/greeeen-dev",
+        "homepage": "https://github.com/greeeen-dev/natsumi-browser",
+        "version": "3.0.2",
+        "createdAt": 0,
+        "updatedAt": 0,
+        "tags": [],
+        "domains": []
+    },
+    "35c026fe-af3f-458d-a5aa-adbe79f93bfa": {
+        "type": 0,
+        "name": "Pineapple Fried",
+        "description": "Cohesive theme with transparent new tabs.",
+        "author": "mr. wazz",
+        "authorUrl": "https://github.com/TheBigWazz",
+        "homepage": "https://github.com/TheBigWazz/Pineapple-Fried",
+        "version": "2.0.0",
+        "createdAt": 1743109194,
+        "updatedAt": 1743109194,
+        "tags": [],
+        "domains": [
+            "url(about:home)",
+            "url(about:newtab)",
+            "url(about:privatebrowsing)"
+        ]
+    }
 }
