@@ -63,7 +63,7 @@ body:
       description: >
         Supports markdown. If left empty, we won't set a README file for your theme.
   - type: textarea
-    id: load_content
+    id: domains
     attributes:
       label: What domains do your userContent file target?
       description: >
