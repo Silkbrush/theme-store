@@ -3,7 +3,7 @@ description: Update your theme in the custom theme store!
 title: "Update theme: "
 body:
   - type: input
-    id: version
+    id: theme
     attributes:
       label: Theme ID
     validations:
