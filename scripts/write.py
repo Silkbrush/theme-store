@@ -38,14 +38,15 @@ if data['domains']:
     data['domains'] = data['domains'].split('\n')
 
 theme_type = 0
+data['submission_type'] = 'Bundle'
 
-if data['submission_type'] == 'Theme':
-    data['load_content'] = []
+if data['load_chrome'] and not data['load_content']:
     theme_type = 1
+    data['submission_type'] = 'Theme'
 
-if data['submission_type'] == 'Page':
-    data['load_chrome'] = []
+if data['load_content'] and not data['load_chrome']:
     theme_type = 2
+    data['submission_type'] = 'Page'
 
 if not data['copy_file'] and not data['copy_folder']:
     print('ERROR: No files to copy.')
@@ -75,7 +76,7 @@ theme_dir = f'themes/{theme_id}'
 os.makedirs(theme_dir)
 
 if data['readme']:
-    with open('theme-repo/README.md', 'w+') as file:
+    with open(f'{theme_dir}/README.md', 'w+') as file:
         file.write(data['readme'])
 
 for file in data['copy_file']:
