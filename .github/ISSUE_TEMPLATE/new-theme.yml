@@ -2,6 +2,24 @@ name: Submit theme
 description: Submit a theme to the custom theme store!
 title: "Add theme: "
 body:
+  - type: input
+    id: name
+    attributes:
+      label: What is the theme's name?
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: What is the theme's description?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: What is the theme's current version?
+      description: >
+        If left empty, we'll use 1.0.0 as the default.
   - type: dropdown
     id: submission_type
     attributes:
