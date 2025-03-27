@@ -1,5 +1,6 @@
 name: Submit theme
 description: Submit a theme to the custom theme store!
+title: "Add theme: "
 body:
   - type: dropdown
     id: submission_type
@@ -15,3 +16,9 @@ body:
         - Page
     validations:
       required: true
+  - type: input
+    id: author
+    attributes:
+      label: What should we call you on the theme store?
+      description: >
+        If left empty, we'll use your GitHub username.
