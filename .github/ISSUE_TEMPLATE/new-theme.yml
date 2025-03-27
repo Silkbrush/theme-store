@@ -5,9 +5,10 @@ body:
     id: submission_type
     attributes:
       label: What is your type of submission?
-      description: \
-        Bundle: test
-        Theme: test
+      description: >
+        Bundle: Modifies both the browser and websites.
+        Theme: Modifies just the browser.
+        Page: Modifies websites.
       options:
         - Bundle
         - Theme
