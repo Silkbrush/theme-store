@@ -56,7 +56,7 @@ body:
       required: true
   - type: checkboxes
     id: copy_readme
-    dropdown:
+    attributes:
       label: Should we copy the README file?
       description: >
         If unchecked, we won't copy the repository's README file.
