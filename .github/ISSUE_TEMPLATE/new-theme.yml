@@ -20,6 +20,8 @@ body:
     id: repo
     attributes:
       label: What is the repository's URL?
+      description: >
+        We'll use this to copy your files to the theme store.
     validations:
       required: true
   - type: textarea
