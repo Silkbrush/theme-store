@@ -20,6 +20,14 @@ body:
       label: What is the theme's new version?
     validations:
       required: true
+  - type: input
+    id: supported
+    attributes:
+      label: What is the latest version of Zen Browser the theme supports?
+      description: >
+        e.g. 1.10.2b
+    validations:
+      required: true
   - type: textarea
     id: copy_file
     attributes:
