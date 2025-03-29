@@ -6,6 +6,14 @@ import time
 to_update = ['version', 'submission_type']
 to_update_install = []
 
+mappings = {
+    'submission_type': 'type',
+    'copy_file': 'files',
+    'copy_folder': 'folders',
+    'load_chrome': 'uclChromeTarget',
+    'load_content': 'uclContentTarget'
+}
+
 with open('/home/runner/issue-parser-result.json', 'r') as file:
     data = json.load(file)
 
@@ -48,15 +56,15 @@ if data['domains']:
     to_update.append('domains')
 
 theme_type = 0
-data['submission_type'] = 'Bundle'
+data['submission_type'] = 0
 
 if data['load_chrome'] and not data['load_content']:
     theme_type = 1
-    data['submission_type'] = 'Theme'
+    data['submission_type'] = 1
 
 if data['load_content'] and not data['load_chrome']:
     theme_type = 2
-    data['submission_type'] = 'Page'
+    data['submission_type'] = 2
 
 # Update themes.json entry
 with open('themes.json', 'r') as file:
@@ -68,7 +76,8 @@ if not data['id'] in themes:
     sys.exit(1)
 
 for key in to_update:
-    themes[data['id']][key] = data[key]
+    mapped = mappings.get(key, key)
+    themes[data['id']][mapped] = data[key]
 
 themes[data['id']]['updatedAt'] = round(time.time())
 
@@ -89,7 +98,8 @@ with open(f'{theme_dir}/theme.json', 'r') as file:
     install_data = json.load(file)
 
 for key in to_update_install:
-    install_data[key] = data[key]
+    mapped = mappings.get(key, key)
+    install_data[mapped] = data[key]
 
 with open(f'{theme_dir}/theme.json', 'w+') as file:
     # noinspection PyTypeChecker
@@ -129,5 +139,8 @@ if install_data['uclContentTarget']:
             print(f'ERROR: Invalid userContent load point {load_point}.')
             print('Please provide a valid file path.')
             sys.exit(1)
+
+with open('/home/runner/theme_name', 'w+') as file:
+    file.write(themes[data["id"]]["name"])
 
 print('SUCCESS: Files have been written to folder.')
