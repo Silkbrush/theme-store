@@ -59,12 +59,6 @@ if data['load_content'] and not data['load_chrome']:
     theme_type = 2
     data['submission_type'] = 'Page'
 
-gh_username = data['repo'].replace('https://github.com/', '', 1).split('/')[0]
-if not gh_username == sys.argv[1]:
-    print('ERROR: Repository owner mismatch.')
-    print('You don\'t own this repository.')
-    sys.exit(1)
-
 # Update themes.json entry
 with open('themes.json', 'r') as file:
     themes = json.load(file)
@@ -82,6 +76,12 @@ themes[data['id']]['updatedAt'] = round(time.time())
 with open('themes.json', 'w+') as file:
     # noinspection PyTypeChecker
     json.dump(themes, file, indent=4)
+
+gh_username = themes[data["id"]]["homepage"].replace('https://github.com/', '', 1).split('/')[0]
+if not gh_username == sys.argv[1]:
+    print('ERROR: Repository owner mismatch.')
+    print('You don\'t own this repository.')
+    sys.exit(1)
 
 os.system(f'git clone {themes[data["id"]]["homepage"]} theme-repo')
 theme_id = str(uuid.uuid4())
