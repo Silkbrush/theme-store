@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-import uuid
 import time
 
 to_update = ['version', 'submission_type']
@@ -84,8 +83,7 @@ if not gh_username == sys.argv[1]:
     sys.exit(1)
 
 os.system(f'git clone {themes[data["id"]]["homepage"]} theme-repo')
-theme_id = str(uuid.uuid4())
-theme_dir = f'themes/{theme_id}'
+theme_dir = f'themes/{data["id"]}'
 os.makedirs(theme_dir)
 
 with open(f'{theme_dir}/theme.json', 'r') as file:
