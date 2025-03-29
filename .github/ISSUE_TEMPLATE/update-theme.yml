@@ -25,7 +25,7 @@ body:
     attributes:
       label: What files should be copied?
       description: >
-        Separate each file using new lines. If left empty, we'll use the current files.
+        Separate each file using new lines. If left empty, we'll use the current files. Enter !erase to remove all files.
     validations:
       required: false
   - type: textarea
@@ -33,7 +33,7 @@ body:
     attributes:
       label: What folders should be copied?
       description: >
-        Separate each file using new lines. If left empty, we'll use the current folders.
+        Separate each file using new lines. If left empty, we'll use the current folders. Enter !erase to remove all folders.
     validations:
       required: false
   - type: textarea
@@ -41,7 +41,7 @@ body:
     attributes:
       label: What files should be loaded for the userChrome?
       description: >
-        Separate each file using new lines. If left empty, we'll use the current files.
+        Separate each file using new lines. If left empty, we'll use the current files. Enter !erase to remove all files.
     validations:
       required: false
   - type: textarea
@@ -49,20 +49,14 @@ body:
     attributes:
       label: What files should be loaded for the userContent?
       description: >
-        Separate each file using new lines. If left empty, we'll use the current files.
+        Separate each file using new lines. If left empty, we'll use the current files. Enter !erase to remove all files.
     validations:
       required: false
-  - type: textarea
-    id: readme
-    attributes:
-      label: What should we put in the README?
-      description: >
-        Supports markdown. If left empty, we'll use the current README.
   - type: textarea
     id: domains
     attributes:
       label: What domains do your userContent file target?
       description: >
-        e.g. google.com, youtube.com. Separate each domain using new lines. If left empty, we'll use the current domains.
+        e.g. google.com, youtube.com. Separate each domain using new lines. If left empty, we'll use the current domains. Enter !erase to remove all domains.
     validations:
       required: false

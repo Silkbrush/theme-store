@@ -58,12 +58,6 @@ if not data['load_chrome'] and not data['load_content']:
     print('Please provide a load point for either userChrome or userContent.')
     sys.exit(1)
 
-if theme_type == 0 and not (data['load_chrome'] and data['load_content']):
-    print('ERROR: Theme type mismatch.')
-    print('Your theme is a Bundle, but you did not provide load points for both userChrome and userContent.')
-    print('Please provide load points for both or use a different type (Theme/Page).')
-    sys.exit(1)
-
 gh_username = data['repo'].replace('https://github.com/', '', 1).split('/')[0]
 if not gh_username == sys.argv[1]:
     print('ERROR: Repository owner mismatch.')
@@ -84,6 +78,9 @@ for file in data['copy_file']:
 
 for folder in data['copy_folder']:
     os.system(f'cp -r theme-repo/{folder} {theme_dir}')
+
+os.system(f'cp theme-repo/.custom-store/README.md {theme_dir}')
+os.system(f'cp theme-repo/.custom-store/image.png {theme_dir}')
 
 os.system(f'rm -rf theme-repo')
 

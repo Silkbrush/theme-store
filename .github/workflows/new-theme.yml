@@ -62,3 +62,61 @@ jobs:
             * You are the owner of the repository you've provided
             
             If the issue persists, please contact the maintainers.
+  create-pr-update:
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.issue.title, 'Update theme:')
+    steps:
+      - uses: actions/checkout@v4
+      - run: git branch ${{ github.event.issue.number }}-new-theme
+      - uses: stefanbuck/github-issue-parser@v3
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/update-theme.yml
+      - run: cat ${HOME}/issue-parser-result.json
+      - run: echo ${HOME}
+      - name: Write theme
+        run: python3 scripts/update.py ${{ github.actor }}
+      - run: git push origin ${{ github.event.issue.number }}-new-theme
+      - name: Create Pull Request
+        id: "create-pr"
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: "Updare theme: ${{ steps.issue-parser.outputs.issueparser_name }}"
+          body: |
+            Updates theme ${{ steps.issue-parser.outputs.issueparser_name }} (${{ steps.issue-parser.outputs.issueparser_id }}).
+            ## Details
+            * **Version**: ${{ steps.issue-parser.outputs.issueparser_version }}
+            * **Description**: ${{ steps.issue-parser.outputs.issueparser_description }}
+            * **Latest supported version**: ${{ steps.issue-parser.outputs.issueparser_supported }}
+          branch: ${{ github.event.issue.number }}-new-theme
+      - name: Close issue (success)
+        if: success()
+        uses: peter-evans/close-issue@v3
+        with:
+          comment: |
+            We've created a PR for your theme! ([#${{ steps.create-pr.outputs.pull-request-number }}](${{ github.server_url }}/${{ github.repository }}/pull/${{ steps.create-pr.outputs.pull-request-number }}))
+            
+            Our reviewers will review your theme shortly. Thank you for your submission!
+      - run: git branch -d ${{ github.event.issue.number }}-new-theme
+        if: failure()
+      - run: git push origin --delete ${{ github.event.issue.number }}-new-theme
+        if: failure()
+      - name: Close issue (failure)
+        if: failure()
+        uses: peter-evans/close-issue@v3
+        with:
+          close-reason: not_planned
+          comment: |
+            Something went wrong while creating a PR for your theme. Please make sure that:
+            
+            * You've specified at least one file/folder to copy
+            * You've specified at least one file as the load point for userChrome/userContent
+              * If your submission is a Bundle, you need both userChrome and userContent files
+            * You've specified a valid repository URL
+            * You are the owner of the repository you've provided
+            
+            If the issue persists, please contact the maintainers.
