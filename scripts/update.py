@@ -84,7 +84,6 @@ if not gh_username == sys.argv[1]:
 
 os.system(f'git clone {themes[data["id"]]["homepage"]} theme-repo')
 theme_dir = f'themes/{data["id"]}'
-os.makedirs(theme_dir)
 
 with open(f'{theme_dir}/theme.json', 'r') as file:
     install_data = json.load(file)
