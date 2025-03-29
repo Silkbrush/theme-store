@@ -1,6 +1,22 @@
 {
-  "files": ["natsumi-config.css"],
-  "folders": ["natsumi", "natsumi-pages"],
-  "uclChromeTarget": ["natsumi/natsumi.css"],
-  "uclContentTarget": ["natsumi-pages/natsumi-pages.css"]
+    "files": [
+        "natsumi-config.css"
+    ],
+    "folders": [
+        "natsumi",
+        "natsumi-pages"
+    ],
+    "uclChromeTarget": [
+        "natsumi/natsumi.css"
+    ],
+    "uclContentTarget": [
+        "natsumi-pages/natsumi-pages.css"
+    ],
+    "copy_file": [
+        "natsumi-config.css",
+        "bento.json"
+    ],
+    "load_chrome": [
+        "natsumi-config.css"
+    ]
 }
