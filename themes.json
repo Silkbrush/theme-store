@@ -11,5 +11,20 @@
         "updatedAt": 1743845534,
         "tags": [],
         "domains": []
+    },
+    "542f2a0e-4216-4037-9eef-e8143c21ab44": {
+        "type": 0,
+        "name": "Nebula",
+        "description": "A glassmorphism inspired theme designed to elevate the experience of Zen Browser by changing the design and tons of new animations",
+        "author": "JustAdumbPrsn",
+        "authorUrl": "https://github.com/JustAdumbPrsn",
+        "homepage": "https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser",
+        "version": "v2.1",
+        "createdAt": 1743848289,
+        "updatedAt": 1743848289,
+        "tags": [],
+        "domains": [
+            "Monkeytype.com"
+        ]
     }
 }

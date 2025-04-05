@@ -1,0 +1,160 @@
+/* ======= FLOATING URL BAR ANIMATION/BLUR ========= */
+
+/* Common Animation Variables */
+:root {
+  --url-animation-timing: cubic-bezier(0.175, 0.885, 0.32, 1.35);
+  --url-animation-duration: 0.3s;
+  --url-blur-gradient: linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--zen-primary-color) 5%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 30%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 75%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 100%, black),
+    color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 15%, black)
+  );
+  --url-border-radius: 12px;
+}
+
+/* Blur background when URL bar opens */
+#browser:has(#urlbar[open]) .browserContainer {
+  filter: blur(1.5rem) brightness(70%) saturate(180%) !important;
+  opacity: 0.7 !important;
+  scale: 1.15 !important;
+  transition: all var(--url-animation-duration) var(--url-animation-timing) !important;
+}
+
+/* Reset blur when URL bar is closed */
+.browserContainer:not(:has(#urlbar[open])) {
+  filter: none !important;
+  opacity: 1 !important;
+  scale: 1 !important;
+  transition: filter var(--url-animation-duration) var(--url-animation-timing), 
+              opacity var(--url-animation-duration) var(--url-animation-timing), 
+              scale var(--url-animation-duration) var(--url-animation-timing) !important;
+}
+
+/* Unblur URL bar when opening */
+@keyframes fadeInUnblur {
+  from {
+    opacity: 0;
+    filter: blur(30px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+#urlbar[open] {
+  animation: fadeInUnblur 0.15s ease-out forwards !important;
+  backdrop-filter: blur(0px) !important;
+}
+
+/* URL bar backgrounds - shared properties */
+#urlbar-background, #urlbar[open] #urlbar-background {
+  border-radius: var(--url-border-radius) !important;
+  padding: 10px !important;
+}
+
+/* URL bar background - default state */
+#urlbar-background {
+  background: light-dark(rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.42)) !important;
+  box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3)) !important;
+}
+
+/* URL bar background - open state */
+#urlbar[open] #urlbar-background {
+  background: light-dark(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2)) !important;
+  box-shadow: 0 20px 30px light-dark(rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.35)) !important;
+  backdrop-filter: blur(100px) !important;
+}
+
+/* URL bar zoom button position */
+#urlbar-zoom-button {
+  left: 30px !important;
+}
+
+#urlbar[open] #urlbar-zoom-button {
+  left: 0 !important;
+}
+
+/* Compact mode fix */
+:root[zen-compact-mode="true"] #urlbar[open] {
+  transform: translateX(-50%) !important;
+}
+
+/* Fix for dancing issue */
+#urlbar[open] #urlbar-results > :nth-child(n+6) {
+  display: none !important;
+}
+
+/* Centered URL bar Text */
+#urlbar .urlbar-input,
+.urlbar-input-container {
+  text-align: center !important; 
+}
+
+/*------------ URLbar loading animation --------------*/
+#urlbar .urlbar-input-container {
+  border-radius: var(--url-border-radius) !important;
+  overflow: hidden;
+  position: relative;
+}
+
+#urlbar .urlbar-input-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--url-blur-gradient);
+  background-size: 300% 100%;
+  background-repeat: repeat-x;
+  clip-path: inset(0 round var(--url-border-radius));
+  animation: urlbar-gradient 8s linear infinite;
+  opacity: 0;
+  filter: blur(20px) brightness(1);
+  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Show animation when a tab is loading or on hover */
+#main-window:has(.tabbrowser-tab[selected][busy]) .urlbar-input-container::before,
+#urlbar:not([open]):hover .urlbar-input-container::before {
+  opacity: 0.485;
+}
+
+/*------ urlbar open hover links gradient animation -------*/
+#urlbar[open] #urlbar-results > * {
+  position: relative;
+  overflow: hidden;
+}
+
+#urlbar[open] #urlbar-results > *::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--url-blur-gradient);
+  background-size: 300% 100%;
+  background-repeat: repeat-x;
+  clip-path: inset(0 round var(--url-border-radius));
+  animation: urlbar-gradient 8s linear infinite;
+  opacity: 0;
+  filter: blur(5px) brightness(1);
+  transition: opacity 0.5s ease-in-out;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Smooth opacity transition on hover */
+#urlbar[open] #urlbar-results > *:hover::before {
+  opacity: 0.81;
+}
+
+@keyframes urlbar-gradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: -300% 50%; }
+}
