@@ -26,5 +26,18 @@
         "domains": [
             "Monkeytype.com"
         ]
+    },
+    "95ee1823-8e1a-4f6d-8aff-5322e1843e23": {
+        "type": 1,
+        "name": "Show Bookmarks on Hover",
+        "description": "Hide bookmark bar by default and only show it when the navbar area is hovered (on Multiple/Collapsed Toolbar mode).",
+        "author": "KiKaraage",
+        "authorUrl": "https://github.com/KiKaraage",
+        "homepage": "https://github.com/KiKaraage/ZenMods/",
+        "version": "1.0.0",
+        "createdAt": 1743868588,
+        "updatedAt": 1743868588,
+        "tags": [],
+        "domains": ""
     }
 }
