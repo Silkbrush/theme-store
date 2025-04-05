@@ -35,6 +35,7 @@ jobs:
             * **Name**: ${{ steps.issue-parser.outputs.issueparser_name }}
             * **Description**: ${{ steps.issue-parser.outputs.issueparser_description }}
             * **Latest supported version**: ${{ steps.issue-parser.outputs.issueparser_supported }}
+            ${{ env.DUPLICATE_WARNING }}
           branch: ${{ github.event.issue.number }}-new-theme
       - name: Close issue (success)
         if: success()

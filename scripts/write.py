@@ -127,10 +127,13 @@ with open(f'{theme_dir}/theme.json', 'w+') as file:
     json.dump(theme_install_data, file, indent=4)
 
 for theme in themes:
+    env_file = os.getenv('GITHUB_ENV')
     if themes[theme]['homepage'] == theme_data['homepage']:
-        print('ERROR: Theme already exists.')
+        print('WARNING: Theme already exists.')
         print('A theme with the same repository already exists.')
-        sys.exit(1)
+
+        with open(env_file, "a") as myfile:
+            myfile.write(f"DUPLICATE_WARNING=* **A theme with this repository already exists.**\n")
 
 themes.update({theme_id: theme_data})
 
