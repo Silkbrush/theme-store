@@ -39,5 +39,18 @@
         "updatedAt": 1743868588,
         "tags": [],
         "domains": ""
+    },
+    "23225fc3-ecac-4fbb-9c03-096ab55a9ee8": {
+        "type": 1,
+        "name": "Advanced Tab Groups",
+        "description": "Advanced Tab Group CSS for Zen Browser",
+        "author": "12th",
+        "authorUrl": "https://github.com/TFFC-Anoms12",
+        "homepage": "https://github.com/TFFC-Anoms12/Advanced-Tab-Groups",
+        "version": "1.6.1",
+        "createdAt": 1743883110,
+        "updatedAt": 1743883110,
+        "tags": [],
+        "domains": ""
     }
 }
