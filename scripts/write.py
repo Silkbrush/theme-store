@@ -74,13 +74,13 @@ if data['readme']:
         file.write(data['readme'])
 
 for file in data['copy_file']:
-    os.system(f'cp theme-repo/{file} {theme_dir}')
+    os.system(f'cp "theme-repo/{file}" "{theme_dir}"')
 
 for folder in data['copy_folder']:
-    os.system(f'cp -r theme-repo/{folder} {theme_dir}')
+    os.system(f'cp -r "theme-repo/{folder}" "{theme_dir}"')
 
-os.system(f'cp theme-repo/.custom-store/README.md {theme_dir}')
-os.system(f'cp theme-repo/.custom-store/image.png {theme_dir}')
+os.system(f'cp theme-repo/.custom-store/README.md "{theme_dir}"')
+os.system(f'cp theme-repo/.custom-store/image.png "{theme_dir}"')
 
 os.system(f'rm -rf theme-repo')
 
