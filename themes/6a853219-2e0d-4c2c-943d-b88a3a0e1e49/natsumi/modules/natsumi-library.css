@@ -29,7 +29,7 @@ their author(s) have been provided above the used code.
 
 /* ==== Natsumi Library CSS ==== */
 
-@media not (-moz-bool-pref: "natsumi.library.disabled") {
+@media not -moz-pref("natsumi.library.disabled") {
   /*noinspection CssInvalidFunction*/
   @-moz-document url-prefix(chrome://browser/content/places/places.xhtml) {
     * {
@@ -43,7 +43,7 @@ their author(s) have been provided above the used code.
         --natsumi-colors-secondary: color-mix(in srgb, var(--natsumi-primary-color) 30%, #1d1d1d 70%);
         --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, white);
 
-        @media (-moz-bool-pref: "natsumi.theme.force-dark-shadows") {
+        @media -moz-pref("natsumi.theme.force-dark-shadows") {
           --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, black);
         }
       }

@@ -1,6 +1,15 @@
 {
-  "files": ["natsumi-config.css"],
-  "folders": ["natsumi", "natsumi-pages"],
-  "uclChromeTarget": ["natsumi/natsumi.css"],
-  "uclContentTarget": ["natsumi-pages/natsumi-pages.css"]
+    "files": [
+        "natsumi-config.css"
+    ],
+    "folders": [
+        "natsumi",
+        "natsumi-pages"
+    ],
+    "uclChromeTarget": [
+        "natsumi/natsumi.css"
+    ],
+    "uclContentTarget": [
+        "natsumi-pages/natsumi-pages.css"
+    ]
 }

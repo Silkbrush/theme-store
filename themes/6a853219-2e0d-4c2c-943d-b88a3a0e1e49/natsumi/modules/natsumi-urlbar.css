@@ -112,7 +112,7 @@ their author(s) have been provided above the used code.
 /* URLbar styling */
 
 /*noinspection CssInvalidFunction*/
-@media not (-moz-bool-pref: "natsumi.urlbar.disabled") {
+@media not -moz-pref("natsumi.urlbar.disabled") {
   :root[zen-compact-mode="true"] {
     #urlbar {
       transition: transform 0s linear !important;
@@ -133,7 +133,7 @@ their author(s) have been provided above the used code.
     background: color-mix(in srgb, var(--zen-branding-bg) 75%, transparent);
     transition: backdrop-filter 0s ease, background 0s ease;
 
-    @media (-moz-bool-pref: "natsumi.urlbar.disable-transparency") {
+    @media -moz-pref("natsumi.urlbar.disable-transparency") {
       background: var(--zen-branding-bg);
       transition: none;
     }
@@ -172,13 +172,13 @@ their author(s) have been provided above the used code.
     }
 
     &[breakout-extend] {
-      @media not (-moz-bool-pref: "natsumi.urlbar.light") {
+      @media not -moz-pref("natsumi.urlbar.light") {
         /* URLbar animations, toggleable to make things lighter. */
 
         animation-name: urlbar-appear;
         animation-duration: var(--animation-duration);
 
-        @media (-moz-bool-pref: "zen.view.use-single-toolbar") {
+        @media -moz-pref("zen.view.use-single-toolbar") {
           animation-name: urlbar-appear-sideways;
         }
 
@@ -299,7 +299,7 @@ their author(s) have been provided above the used code.
         margin-right: 0 !important;
         border-radius: 0 !important;
 
-        @media (-moz-bool-pref: "zen.view.use-single-toolbar") {
+        @media -moz-pref("zen.view.use-single-toolbar") {
           margin-left: 4px !important;
         }
 
@@ -319,7 +319,7 @@ their author(s) have been provided above the used code.
         padding-right: 6px !important;
         border-radius: var(--urlbar-icon-border-radius) !important;
 
-        @media (-moz-bool-pref: "zen.view.use-single-toolbar") {
+        @media -moz-pref("zen.view.use-single-toolbar") {
           margin-left: 3px !important;
         }
       }
@@ -376,7 +376,7 @@ their author(s) have been provided above the used code.
           mask-image: linear-gradient(135deg, black, transparent 50%);
         }
 
-        @media (-moz-bool-pref: "natsumi.urlbar.disable-transparency") {
+        @media -moz-pref("natsumi.urlbar.disable-transparency") {
           transition: none;
           backdrop-filter: none;
           background: var(--natsumi-colors-secondary) !important;
@@ -391,7 +391,7 @@ their author(s) have been provided above the used code.
         padding-inline: calc(var(--urlbar-margin-inline) + var(--urlbar-container-padding) - 2px) !important;
       }
 
-      @media (-moz-bool-pref: "natsumi.urlbar.force-nowrap") {
+      @media -moz-pref("natsumi.urlbar.force-nowrap") {
         .urlbarView-no-wrap {
           flex-basis: unset !important;
         }
@@ -416,7 +416,7 @@ their author(s) have been provided above the used code.
           margin-left: 10px !important;
         }
 
-        @media (-moz-bool-pref: "zen.view.use-single-toolbar") {
+        @media -moz-pref("zen.view.use-single-toolbar") {
           #identity-icon-box {
             margin-left: 12px !important;
           }
@@ -607,9 +607,9 @@ their author(s) have been provided above the used code.
 
   /* Compact URLbar */
 
-  @media not (-moz-bool-pref: "natsumi.urlbar.no-compact") {
-    @media not (-moz-bool-pref: "zen.view.use-single-toolbar") {
-      @media (-moz-bool-pref: "zen.tabs.vertical") {
+  @media not -moz-pref("natsumi.urlbar.no-compact") {
+    @media not -moz-pref("zen.view.use-single-toolbar") {
+      @media -moz-pref("zen.tabs.vertical") {
 
         #urlbar:not([breakout-extend="true"]) {
           --urlbar-anim-time: 0.2s;
@@ -671,8 +671,8 @@ their author(s) have been provided above the used code.
     }
   }
 
-  @media not (-moz-bool-pref: "natsumi.theme.disable-blur") {
-    @media not (-moz-bool-pref: "natsumi.urlbar.disable-transparency") {
+  @media not -moz-pref("natsumi.theme.disable-blur") {
+    @media not -moz-pref("natsumi.urlbar.disable-transparency") {
       #browser:has(#urlbar[breakout-extend]) {
         .deck-selected browser, .browserSidebarContainer[zen-split] browser {
           clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);

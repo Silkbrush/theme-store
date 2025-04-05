@@ -44,9 +44,9 @@ their author(s) have been provided above the used code.
 }
 
 :root[zen-compact-mode="true"]:not([customizing]) {
-  @media (-moz-bool-pref: "zen.view.compact.hide-toolbar") {
+  @media -moz-pref("zen.view.compact.hide-toolbar") {
     /*noinspection CssInvalidFunction*/
-    @media (-moz-bool-pref: "natsumi.navbar.glass-effect") {
+    @media -moz-pref("natsumi.navbar.glass-effect") {
       #zen-appcontent-navbar-container {
         padding: 0 !important;
         width: calc(100vw - 2px) !important;
@@ -59,12 +59,12 @@ their author(s) have been provided above the used code.
         }
 
         /*noinspection CssInvalidFunction*/
-        @media not (-moz-bool-pref: "natsumi.theme.disable-glass-shadow") {
+        @media not -moz-pref("natsumi.theme.disable-glass-shadow") {
           box-shadow: 0 0 var(--natsumi-mat-ga-shadow-size) var(--natsumi-mat-ga-shadow-color) !important;
         }
       }
 
-      @media (-moz-bool-pref: "natsumi.navbar.float") {
+      @media -moz-pref("natsumi.navbar.float") {
         #zen-appcontent-navbar-container {
           background: transparent !important;
           border: none !important;
@@ -100,7 +100,7 @@ their author(s) have been provided above the used code.
         }
       }
 
-      @media not (-moz-bool-pref: "natsumi.theme.disable-blur") {
+      @media not -moz-pref("natsumi.theme.disable-blur") {
         #browser:has(#zen-appcontent-navbar-container:is([zen-has-hover], [zen-user-show], :focus-within)) {
           .deck-selected browser, .browserSidebarContainer[zen-split] browser {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);

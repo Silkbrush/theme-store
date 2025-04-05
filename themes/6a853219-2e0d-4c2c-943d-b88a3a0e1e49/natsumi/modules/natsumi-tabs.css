@@ -116,7 +116,7 @@ their author(s) have been provided above the used code.
       --natsumi-tab-idle-opacity: 0;
 
       &[usercontextid] {
-        @media not (-moz-bool-pref: "zen.workspaces.hide-default-container-indicator") {
+        @media not -moz-pref("zen.workspaces.hide-default-container-indicator") {
           --natsumi-tab-highlight-color: var(--identity-icon-color);
           --natsumi-tab-idle-width: 40%;
           --natsumi-tab-idle-opacity: 1;
@@ -136,6 +136,7 @@ their author(s) have been provided above the used code.
 
       & > .tab-stack > .tab-background {
         transition: background-color 0.2s ease, backdrop-filter 0.2s ease !important;
+        overflow: visible !important;
 
         .tab-context-line {
           display: none !important;
@@ -151,11 +152,11 @@ their author(s) have been provided above the used code.
           left: var(--natsumi-tabs-blade-position-offset);
           border: 2px solid var(--natsumi-tab-highlight-color);
           background: color-mix(in srgb, var(--natsumi-tab-highlight-color) 40%, transparent);
-          border-radius: inherit;
+          border-radius: calc(var(--border-radius-medium) - 1px);
           mask-image: linear-gradient(to right, black, transparent 30%);
           transition: width 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border 0.2s ease;
 
-          @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+          @media not -moz-pref("zen.view.sidebar-expanded") {
             left: 0;
             mask-image: linear-gradient(to right, black, transparent 40%);
           }
@@ -178,7 +179,7 @@ their author(s) have been provided above the used code.
           background-color: var(--natsumi-mat-hz-background) !important;
           animation: backdrop-fadein 0.2s ease;
 
-          @media (-moz-bool-pref: "natsumi.sidebar.blur-tab-button") {
+          @media -moz-pref("natsumi.sidebar.blur-tab-button") {
             animation: backdrop-with-blur-fadein 0.2s ease;
           }
 
@@ -191,7 +192,7 @@ their author(s) have been provided above the used code.
             top: 0;
             left: 0;
 
-            @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+            @media not -moz-pref("zen.view.sidebar-expanded") {
               width: calc(100% - calc(var(--tab-block-margin) * 2));
             }
           }
@@ -206,7 +207,7 @@ their author(s) have been provided above the used code.
             width: calc(100% - calc(var(--tab-block-margin) * 2));
             opacity: 1;
 
-            @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+            @media not -moz-pref("zen.view.sidebar-expanded") {
               width: calc(100% - calc(var(--tab-block-margin) * 2));
             }
           }
@@ -251,7 +252,7 @@ their author(s) have been provided above the used code.
       --natsumi-tab-line-color: rgba(0, 0, 0, 0);
 
       &[usercontextid] {
-        @media not (-moz-bool-pref: "zen.workspaces.hide-default-container-indicator") {
+        @media not -moz-pref("zen.workspaces.hide-default-container-indicator") {
           --natsumi-tab-highlight-color: var(--identity-icon-color);
           --natsumi-tab-line-color: var(--identity-icon-color);
         }
@@ -310,7 +311,7 @@ their author(s) have been provided above the used code.
         & > .tab-stack > .tab-background {
           border: none !important;
 
-          @media (-moz-bool-pref: "zen.theme.essentials-favicon-bg") {
+          @media -moz-pref("zen.theme.essentials-favicon-bg") {
             &::before {
               opacity: 0.6 !important;
             }
@@ -320,7 +321,7 @@ their author(s) have been provided above the used code.
             }
           }
 
-          @media not (-moz-bool-pref: "zen.theme.essentials-favicon-bg") {
+          @media not -moz-pref("zen.theme.essentials-favicon-bg") {
             background-color: var(--natsumi-mat-hz-background) !important;
             animation: backdrop-fadein 0.2s ease;
             animation-fill-mode: forwards;
