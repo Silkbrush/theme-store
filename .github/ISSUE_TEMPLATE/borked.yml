@@ -1,7 +1,7 @@
 name: Report borked theme
 description: If a theme is broken, report it here!
 title: "BORKED: "
-type: bug
+type: Bug
 body:
   - type: input
     id: theme
