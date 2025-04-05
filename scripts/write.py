@@ -138,4 +138,7 @@ with open('themes.json', 'w+') as file:
     # noinspection PyTypeChecker
     json.dump(themes, file, indent=4)
 
+with open('/home/runner/theme_id', 'w+') as file:
+    file.write(theme_id)
+
 print('SUCCESS: Files have been written to folder.')
