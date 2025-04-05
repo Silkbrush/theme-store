@@ -29,7 +29,7 @@ their author(s) have been provided above the used code.
 
 /* ==== Natsumi loading animation ==== */
 
-@media not (-moz-bool-pref: "natsumi.theme.disable-loading-animations") {
+@media not -moz-pref("natsumi.theme.disable-loading-animations") {
   @keyframes browser-loading {
     from {
       transform: rotate(0);
@@ -88,7 +88,7 @@ their author(s) have been provided above the used code.
     }
   }
 
-  @media (-moz-bool-pref: "natsumi.theme.enable-border-animation") {
+  @media -moz-pref("natsumi.theme.enable-border-animation") {
     :not(:has(hbox.zen-glance-background)):not(:has(hbox.zen-glance-overlay)) {
       .browserStack browser {
         animation-name: browser-margin-reverse;
@@ -116,7 +116,7 @@ their author(s) have been provided above the used code.
     }
   }
 
-  @media not (-moz-bool-pref: "natsumi.theme.disable-urlbar-animation") {
+  @media not -moz-pref("natsumi.theme.disable-urlbar-animation") {
     #urlbar:not([breakout-extend="true"]) {
       #urlbar-background {
         overflow: hidden;
@@ -140,7 +140,7 @@ their author(s) have been provided above the used code.
   }
 
   :has(.tabbrowser-tab[selected][busy]):not(:has(hbox.zen-glance-background)):not(:has(hbox.zen-glance-overlay)) {
-    @media (-moz-bool-pref: "natsumi.theme.enable-border-animation") {
+    @media -moz-pref("natsumi.theme.enable-border-animation") {
       .browserSidebarContainer.deck-selected {
         box-shadow: none !important;
 
@@ -167,7 +167,7 @@ their author(s) have been provided above the used code.
       }
     }
 
-    @media not (-moz-bool-pref: "natsumi.theme.disable-urlbar-animation") {
+    @media not -moz-pref("natsumi.theme.disable-urlbar-animation") {
       #urlbar:not([breakout-extend="true"]) {
         #urlbar-background {
           /*noinspection CssInvalidFunction*/
@@ -197,7 +197,7 @@ their author(s) have been provided above the used code.
 
   /* Disable animations for non-website elements */
 
-  @media (-moz-bool-pref: "natsumi.theme.enable-border-animation") {
+  @media -moz-pref("natsumi.theme.enable-border-animation") {
     browser.dialogFrame {
       animation-name: none !important;
 

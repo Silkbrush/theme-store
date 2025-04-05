@@ -31,7 +31,7 @@ their author(s) have been provided above the used code.
 
 /* Marginless compact mode */
 
-@media (-moz-bool-pref: "natsumi.theme.compact-marginless") {
+@media -moz-pref("natsumi.theme.compact-marginless") {
   #zen-tabbox-wrapper {
     transition: margin 0.2s ease, border-radius 0.2s ease !important;
   }
@@ -43,7 +43,7 @@ their author(s) have been provided above the used code.
         .toolbarbutton-icon, .toolbarbutton-badge-stack {
           transition: background-color 0.2s ease !important;
 
-          @media (-moz-bool-pref: "natsumi.theme.opaque-icons") {
+          @media -moz-pref("natsumi.theme.opaque-icons") {
             -moz-context-properties: fill;
             fill: light-dark(black, white);
           }
@@ -64,8 +64,8 @@ their author(s) have been provided above the used code.
           }
         }
 
-        @media (-moz-bool-pref: "zen.view.use-single-toolbar") {
-          @media (-moz-bool-pref: "natsumi.theme.compact-marginless-hide-bookmarks") {
+        @media -moz-pref("zen.view.use-single-toolbar") {
+          @media -moz-pref("natsumi.theme.compact-marginless-hide-bookmarks") {
             #zen-appcontent-navbar-container:not([zen-has-hover]) {
               min-height: 0 !important;
               height: 0 !important;
@@ -242,16 +242,8 @@ their author(s) have been provided above the used code.
   }
 }
 
-@media not (-moz-bool-pref: "natsumi.theme.disable-blur") {
+@media not -moz-pref("natsumi.theme.disable-blur") {
   #browser:has(#fullscreen-warning:not([hidden]), #pointerlock-warning:not([hidden])) .deck-selected browser {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-}
-
-.menupopup-arrowscrollbox {
-  background-color: color-mix(in srgb, var(--natsumi-primary-color) 10%, #fff) !important;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: color-mix(in srgb, var(--natsumi-colors-secondary) 30%, #000) !important;
   }
 }

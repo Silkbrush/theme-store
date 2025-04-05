@@ -49,7 +49,7 @@ their author(s) have been provided above the used code.
     background-color: var(--natsumi-mat-hz-background) !important;
     backdrop-filter: saturate(var(--natsumi-mat-hz-saturation)) contrast(var(--natsumi-mat-hz-contrast)) !important;
 
-    @media (-moz-bool-pref: "natsumi.miniplayer.blur-fix") {
+    @media -moz-pref("natsumi.miniplayer.blur-fix") {
       &::before {
         content: "";
         position: absolute;
@@ -77,7 +77,7 @@ their author(s) have been provided above the used code.
       pointer-events: none;
     }
 
-    @media (-moz-bool-pref: "natsumi.miniplayer.disable-accent") {
+    @media -moz-pref("natsumi.miniplayer.disable-accent") {
       &::after {
         display: none !important;
       }

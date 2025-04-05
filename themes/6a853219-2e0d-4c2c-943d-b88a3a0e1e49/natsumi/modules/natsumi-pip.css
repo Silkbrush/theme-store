@@ -29,7 +29,7 @@ their author(s) have been provided above the used code.
 
 /* ==== Natsumi PiP ==== */
 
-@media not (-moz-bool-pref: "natsumi.pip.disabled") {
+@media not -moz-pref("natsumi.pip.disabled") {
   @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
     /*noinspection CssInvalidFunction*/
     * {
@@ -58,7 +58,7 @@ their author(s) have been provided above the used code.
       --toolbarbutton-hover-background: color-mix(in srgb, light-dark(#1d1d1d, #ebebeb) 10%, transparent 90%);
       --toolbarbutton-active-background: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.11));
 
-      @media (-moz-bool-pref: "natsumi.theme.force-dark-shadows") {
+      @media -moz-pref("natsumi.theme.force-dark-shadows") {
         --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, black);
       }
     }
@@ -95,7 +95,7 @@ their author(s) have been provided above the used code.
       }
     }
 
-    @media (-moz-bool-pref: "natsumi.pip.rounded") {
+    @media -moz-pref("natsumi.pip.rounded") {
       /* This won't work on Linux (sadly), might be just a Gnome thing. */
       /* If you're seeing this, create an issue if it does indeed work */
 
@@ -132,7 +132,7 @@ their author(s) have been provided above the used code.
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important;
         border: 2px solid light-dark(rgba(20, 20, 20, 0.1), rgba(235, 235, 235, 0.1)) !important;
 
-        @media (-moz-bool-pref: "natsumi.pip.tinted-haze") {
+        @media -moz-pref("natsumi.pip.tinted-haze") {
           background-color: var(--natsumi-mat-hz-background-tinted) !important;
         }
 
@@ -188,22 +188,26 @@ their author(s) have been provided above the used code.
         border-radius: 10px !important;
         padding: 10px 15px !important;
         margin: 0 5px !important;
-        width: calc(100% - 10px) !important;
+        margin-bottom: 5px !important;
+        width: min(calc(100% - 10px), 700px) !important;
         box-sizing: border-box !important;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important;
         backdrop-filter: saturate(3) contrast(2) blur(var(--natsumi-mat-hz-blur-radius)) !important;
         filter: blur(10px);
         transition: opacity 0.3s ease, bottom 0.3s ease, filter 0.3s ease !important;
         border: 2px solid light-dark(rgba(20, 20, 20, 0.1), rgba(235, 235, 235, 0.1)) !important;
+        left: calc(50% - 5px) !important;
+        transform: translateX(-50%) !important;
 
-        @media (-moz-bool-pref: "natsumi.pip.tinted-haze") {
+        @media -moz-pref("natsumi.pip.tinted-haze") {
           background-color: var(--natsumi-mat-hz-background-tinted) !important;
         }
 
-        @media (-moz-bool-pref: "natsumi.pip.native-border-radius") {
+        @media -moz-pref("natsumi.pip.native-border-radius") and (width <= 710px) {
           /* For the sake of adding native radius, we'll reduce the margin of the controls here */
-          width: 100% !important;
+          width: min(100%, 700px) !important;
           margin: 0 !important;
+          left: calc(50%) !important;
           bottom: -10px !important;
 
           /*
@@ -250,14 +254,6 @@ their author(s) have been provided above the used code.
             width: 12px !important;
             height: 12px !important;
             border: none !important;
-            scale: 1;
-            transition: scale 0.2s ease;
-          }
-
-          &:hover {
-            &::-moz-range-thumb {
-              opacity: 1;
-            }
           }
         }
 
@@ -456,27 +452,31 @@ their author(s) have been provided above the used code.
           }
         }
       }
+    }
 
-      &:hover {
-        & > button {
-          opacity: 1 !important;
-          top: 10px !important;
-          filter: blur(0) !important;
-        }
+    body:fullscreen #controls[showing]:hover, body:not(:fullscreen) #controls:hover {
+      & > button {
+        opacity: 1 !important;
+        top: 10px !important;
+        filter: blur(0) !important;
+      }
 
-        #controls-bottom {
-          opacity: 1 !important;
-          bottom: 5px !important;
-          filter: blur(0);
+      #controls-bottom {
+        opacity: 1 !important;
+        bottom: 5px !important;
+        filter: blur(0);
 
-          @media (-moz-bool-pref: "natsumi.pip.native-border-radius") {
-            bottom: 0 !important;
-          }
+        @media -moz-pref("natsumi.pip.native-border-radius") {
+          bottom: 0 !important;
         }
       }
     }
 
     body:fullscreen {
+      &:has(#controls:not([showing])) {
+        cursor: none !important;
+      }
+
       #controls {
         #controls-bottom {
           #fullscreen {

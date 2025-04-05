@@ -30,7 +30,7 @@ their author(s) have been provided above the used code.
 /* ==== Horizontal tabs patches ==== */
 
 /*noinspection CssUnknownProperty*/
-@media not (-moz-bool-pref: "zen.tabs.vertical") {
+@media not -moz-pref("zen.tabs.vertical") {
   #zen-essentials-container, #vertical-pinned-tabs-container, #tabbrowser-arrowscrollbox {
     min-height: 36px;
   }

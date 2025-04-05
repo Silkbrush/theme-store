@@ -35,7 +35,7 @@ By using experimental features, you acknowledge that they may break Natsumi or Z
 */
 
 /* Global font */
-@media (-moz-bool-pref: "natsumi.experiments.custom-font") {
+@media -moz-pref("natsumi.experiments.custom-font") {
   #zen-main-app-wrapper, .tab-label, menuitem, panelmultiview, .PanelUI-zen-profiles-item-name {
     font-family: var(--natsumi-custom-font), system-ui !important;
   }

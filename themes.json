@@ -1,15 +1,15 @@
 {
-  "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
-    "type": 0,
-    "name": "Natsumi Browser",
-    "description": "A userchrome for Zen Browser that makes things flow.",
-    "author": "Green",
-    "authorUrl": "https://github.com/greeeen-dev",
-    "homepage": "https://github.com/greeeen-dev/natsumi-browser",
-    "version": "3.0.2",
-    "createdAt": 0,
-    "updatedAt": 0,
-    "tags": [],
-    "domains": []
-  }
+    "6a853219-2e0d-4c2c-943d-b88a3a0e1e49": {
+        "type": 0,
+        "name": "Natsumi Browser",
+        "description": "A userchrome for Zen Browser that makes things flow.",
+        "author": "Green",
+        "authorUrl": "https://github.com/greeeen-dev",
+        "homepage": "https://github.com/greeeen-dev/natsumi-browser",
+        "version": "3.0.3",
+        "createdAt": 0,
+        "updatedAt": 1743845534,
+        "tags": [],
+        "domains": []
+    }
 }

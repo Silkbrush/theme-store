@@ -57,7 +57,7 @@ their author(s) have been provided above the used code.
   }
 }
 
-@media not (-moz-bool-pref: "natsumi.findbar.disabled") {
+@media not -moz-pref("natsumi.findbar.disabled") {
   /*noinspection CssInvalidFunction*/
   findbar {
     position: absolute;
@@ -123,7 +123,7 @@ their author(s) have been provided above the used code.
     }
 
     /* Restore old width */
-    @media (-moz-bool-pref: "natsumi.findbar.wider-findbar") {
+    @media -moz-pref("natsumi.findbar.wider-findbar") {
       width: min(720px, 90%);
     }
 
@@ -140,7 +140,7 @@ their author(s) have been provided above the used code.
 
     /*noinspection CssInvalidFunction*/
     &:has(.findbar-textbox:is([status="notfound"])) {
-      @media not (-moz-bool-pref: "natsumi.findbar.disable-not-found-bg") {
+      @media not -moz-pref("natsumi.findbar.disable-not-found-bg") {
         background: color-mix(in srgb, light-dark(rgb(255, 146, 146), rgb(255, 100, 100)) 75%, transparent) !important;
         box-shadow: 0 0 10px color-mix(in srgb, light-dark(rgb(255, 146, 146), rgb(255, 100, 100)) 75%, light-dark(black, white)) !important;
       }
@@ -271,7 +271,7 @@ their author(s) have been provided above the used code.
     }
   }
 
-  @media not (-moz-bool-pref: "natsumi.theme.disable-blur") {
+  @media not -moz-pref("natsumi.theme.disable-blur") {
     .deck-selected, .browserSidebarContainer[zen-split] {
       &:has(findbar:not([hidden="true"])) browser {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
