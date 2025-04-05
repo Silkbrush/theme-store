@@ -1,0 +1,329 @@
+/* Credit: Lacuna by Tanay-Kar */
+
+/* === COMPACT SIDEBAR ===================================================================================================== */
+
+.urlbarView-row[type="search"] {
+    min-height: 50px !important;
+  }
+  
+  :root[zen-compact-mode="true"] #urlbar[open] {
+    width: 50vw !important;
+    max-width: 600px !important;
+    left: 50vw !important;
+    transform: translate(-50%, -50%) scale(1.2) !important;
+  }
+  
+  
+  :root[zen-compact-mode="true"] #sidebar {
+    width: var(--sidebar-width) !important;
+    min-width: var(--sidebar-width) !important;
+  }
+  
+  /* Reduce unnecessary transitions */
+  :root[zen-compact-mode="true"]:not([customizing]):not([inDOMFullscreen="true"]) #navigator-toolbox {
+    transition-delay: -0.002s !important;
+  }
+  
+/* === BLUR COMPACT SIDEBAR ================================================================================================ */
+/* Compact sidebar with blurred transparent background */
+body:has([zen-compact-mode="true"]) #titlebar {
+  background: light-dark(rgba(255, 255, 255, 0.4),rgba(0, 0, 0, 0.4)) !important; /* Slightly lighter dark with transparency */
+  backdrop-filter: blur(1rem) !important; /* Smooth blur effect */
+}
+
+/* === GENERAL SIDEBAR ====================================================================================================== */
+/* Removes scrollbar in tab panel and adds fade effect */
+  #zen-tabs-wrapper {
+      mask-image: linear-gradient(to bottom, black 90%, transparent 100%) !important;
+      -webkit-mask-image: linear-gradient(to bottom, black 97%, transparent 100%) !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      overflow-y: auto !important;
+  }
+  
+  #zen-tabs-wrapper::-webkit-scrollbar {
+      display: none !important;
+  }
+/* --------------------Better findbar & bookmark sidebar-------------------------- */
+/* Floating Findbar - Default Hidden State */
+findbar {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 1000 !important;
+  min-width: 780px !important;
+background: light-dark(
+  color-mix(in srgb, rgba(255, 255, 255, 0.59), var(--zen-primary-color) 15%),
+  color-mix(in srgb, rgba(0, 0, 0, 0.51), var(--zen-primary-color) 15%)) !important;
+
+
+  backdrop-filter: blur(5px) !important; /* Start with very little blur */
+  border-radius: 13px !important;
+  padding: 6px 10px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+  border: 2px solid light-dark(rgba(100, 100, 100, 1), rgba(0, 0, 0, 0.3)) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  opacity: 0 !important; /* Start invisible */
+  transform: scale(0.95) !important; /* Start slightly shrunken */
+  pointer-events: none !important; /* Prevent interaction when hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease, backdrop-filter 0.6s ease !important;
+}
+
+/* Show Animation (Blurs In) */
+findbar:not([hidden="true"]) {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  backdrop-filter: blur(25px) !important; /* Full blur effect */
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+/* Hide Animation (Blurs Out) */
+findbar[hidden="true"] {
+  opacity: 0 !important;
+  transform: scale(0.95) !important;
+  backdrop-filter: blur(5px) !important; /* Reduce blur before hiding */
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, transform 0.3s ease, backdrop-filter 0.6s ease, visibility 0s linear 0.3s !important;
+}
+
+/* Search Input - No Border */
+findbar textbox {
+  flex-grow: 1 !important;
+  min-width: 230px !important;
+  background: transparent !important;
+  color: inherit !important;
+  border: none !important;  /* Ensures no border */
+  outline: none !important;
+  font-size: 14px !important;
+  padding: 4px 10px !important;
+  box-shadow: none !important; /* Removes any inset shadow */
+}
+
+
+/* General Button Styling */
+findbar toolbarbutton {
+  background: light-dark(rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15)) !important;
+  border-radius: 6.5px !important;
+  transition: background 0.2s ease, transform 0.1s ease-out !important;
+}
+
+/* Small Up/Down (Find Previous/Next) Buttons */
+findbar .findbar-find-previous,
+findbar .findbar-find-next {
+  width: 20px !important;
+  height: 20px !important;
+  padding: 2px !important;
+  font-size: 10px !important;
+}
+
+/* Add spacing between up/down buttons */
+.findbar-find-previous {
+  margin-right: 4px !important;
+}
+
+/* Small Close Button */
+findbar .findbar-close {
+  width: 18px !important;
+  height: 18px !important;
+  padding: 2px !important;
+  font-size: 10px !important;
+  margin-left: auto !important; /* Keep it aligned to the right */
+}
+
+/* Hover and Active Effects */
+findbar toolbarbutton:hover {
+  background: light-dark(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.6)) !important;
+  transform: scale(1.05) !important;
+}
+
+findbar toolbarbutton:active {
+  transform: scale(0.92) !important;
+}
+/* ------------------------------------------------------------------ */
+/* Transparent Bookmarks */
+#zen-sidebar-web-panel {
+  background: light-dark(#00000022, #00000044) !important;
+  backdrop-filter: blur(30px) !important;
+}
+.sidebar-panel {
+  background: transparent !important;
+  font-weight: 600 !important;
+  opacity: 0.7 !important;
+}
+
+/* Cleaned & Transparent Sidebar */
+#sidebar-box {
+  background-color: light-dark(rgba(255, 255, 255, 0.11),
+      rgba(0, 0, 0, 0.2)) !important;
+  border: none !important;
+
+  & #sidebar-header {
+    border-bottom: none !important;
+
+    & #sidebar-close {
+      !important;
+    }
+  }
+}
+
+/* Transparent Search box in sidebar */
+#sidebar-search-container>#search-box,
+#viewButton {
+  padding: 4px 8px !important;
+
+  appearance: none !important;
+  background-color: transparent !important;
+  border-radius: 10px !important;
+  border: none !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* ================= Better Context Menu ===================== */
+/*menupopup {
+    --panel-border-radius: 15px !important;
+    --panel-background: linear-gradient(
+        155deg, 
+        color-mix(in srgb, var(--zen-primary-color) 25%, light-dark(white, rgba(20,20,20,1))) 0%, 
+        light-dark(white,rgba(20,20,20,1)) 40%
+    ) !important;
+}
+*/
+
+:is(menu, menuitem):hover {
+    border-radius: 12px !important;
+}
+
+#tabContextMenu:has(
+    #context_reloadTab:not([hidden])
+    ):has(:is(#context_zen-add-essential, #context_zen-remove-essential):not([hidden])
+    ):has(:is(#context_pinTab, #context_unpinTab, #context_bookmarkTab):not([hidden])) {
+    
+    :nth-child(1 of menuseparator) {
+        display: flex !important;
+        visibility: visible !important;
+        order: -1 !important;
+    }
+
+    #context_reloadTab,
+    :is(#context_zen-add-essential, #context_zen-remove-essential),
+    :is(#context_pinTab, #context_unpinTab),
+    #context_bookmarkTab {
+        order: -999 !important;
+        --height: 42px;
+        width: 25% !important;
+        height: var(--height) !important;
+        background-position: center !important;
+        border-radius: 12px !important;
+        position: relative; /* Required for absolute pseudo-element */
+        overflow: hidden; /* Keeps the effect within bounds */
+        transition: box-shadow 0.4s ease-in-out; /* Smooth transition */
+
+
+        .menu-text {
+            display: none !important;
+        }
+    }
+
+    #context_zen-remove-essential {
+        margin-left: 37.5% !important;
+        margin-top: calc(0px - var(--height)) !important;
+    }
+
+    #context_zen-add-essential {
+        margin-left: 50% !important;
+        margin-top: calc(0px - var(--height)) !important;
+    }
+
+    :is(#context_pinTab, #context_unpinTab) {
+        margin-left: 25% !important;
+        margin-top: calc(0px - var(--height)) !important;
+    }
+
+    #context_bookmarkTab {
+        margin-left: 75% !important;
+        margin-top: calc(0px - var(--height)) !important;
+    }
+}
+
+/* Fixed width */
+#tabContextMenu {
+    width: 280px !important;
+}
+
+/* Hide "New Tab" */
+#context_openANewTab {
+    display: none !important;
+}
+
+menuseparator {
+
+    /* Hide first separator */
+    &:first-of-type {
+        display: none !important;
+    }
+
+    /* Reduce separator opacity */
+    &::before {
+        opacity: 0.3;
+    }
+}
+
+/* Gradient animation effect */
+#context_reloadTab::before,
+:is(#context_zen-add-essential, #context_zen-remove-essential)::before,
+:is(#context_pinTab, #context_unpinTab)::before,
+#context_bookmarkTab::before {
+    content: "";
+    position: absolute;
+    inset: 2px; /* Shrinks the effect area */
+    background: linear-gradient(
+        45deg,
+        color-mix(in srgb, var(--zen-primary-color) 5%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 20%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 90%, black), /* Peak highlight */
+        color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 15%, black)  
+    );
+    background-size: 400% 400%;
+    border-radius: 12px !important;
+    clip-path: inset(-1 round 12px);
+
+    opacity: 0;
+    filter: blur(10px) brightness(1);
+    transition: opacity 0.4s ease-in-out;
+    pointer-events: none;
+}
+
+/* Hover effect - gradient animation */
+#context_reloadTab:hover,
+:is(#context_zen-add-essential, #context_zen-remove-essential):hover,
+:is(#context_pinTab, #context_unpinTab):hover,
+#context_bookmarkTab:hover {
+}
+
+#context_reloadTab:hover::before,
+:is(#context_zen-add-essential, #context_zen-remove-essential):hover::before,
+:is(#context_pinTab, #context_unpinTab):hover::before,
+#context_bookmarkTab:hover::before {
+    animation-play-state: running;
+    opacity: 0.5;
+}
+
+/* Gradient animation */
+@keyframes tab-hover-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

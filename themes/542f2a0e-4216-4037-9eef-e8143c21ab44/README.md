@@ -1,0 +1,1 @@
+If you like the theme then make sure to give it a ⭐https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser

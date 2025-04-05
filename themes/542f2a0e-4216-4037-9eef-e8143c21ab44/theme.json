@@ -1,0 +1,12 @@
+{
+    "files": "",
+    "folders": [
+        "Nebula"
+    ],
+    "uclChromeTarget": [
+        "Nebula/Nebula.css"
+    ],
+    "uclContentTarget": [
+        "Nebula/Nebula-content.css"
+    ]
+}
