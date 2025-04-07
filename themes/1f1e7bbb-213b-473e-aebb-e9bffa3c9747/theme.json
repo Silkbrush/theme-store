@@ -1,0 +1,12 @@
+{
+    "files": "",
+    "folders": [
+        "pineapple-fried"
+    ],
+    "uclChromeTarget": [
+        "pineapple-fried/pineapple-fried.css"
+    ],
+    "uclContentTarget": [
+        "pineapple-fried/zen-new-tabs/zen-new-tabs.css"
+    ]
+}

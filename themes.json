@@ -52,5 +52,22 @@
         "updatedAt": 1743883110,
         "tags": [],
         "domains": ""
+    },
+    "1f1e7bbb-213b-473e-aebb-e9bffa3c9747": {
+        "type": 0,
+        "name": "Pineapple Fried",
+        "description": "A cohesive and transparent integrated URL theme for Zen",
+        "author": "Mr. Wazz",
+        "authorUrl": "https://github.com/TheBigWazz",
+        "homepage": "https://github.com/TheBigWazz/Pineapple-Fried/",
+        "version": "2.1.0",
+        "createdAt": 1743986452,
+        "updatedAt": 1743986452,
+        "tags": [],
+        "domains": [
+            "about:home",
+            "about:newtab",
+            "about:privatebrowsing"
+        ]
     }
 }
