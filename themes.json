@@ -69,5 +69,18 @@
             "about:newtab",
             "about:privatebrowsing"
         ]
+    },
+    "b814d97b-2bef-4448-847f-bec13ae326dd": {
+        "type": 1,
+        "name": "ToucanTweaks",
+        "description": "A small theme to make icons more consistent",
+        "author": "YouCanTouCan",
+        "authorUrl": "https://github.com/YouCanTouCan",
+        "homepage": "https://github.com/YouCanTouCan/Zen-Setup",
+        "version": "1.1.0",
+        "createdAt": 1744042206,
+        "updatedAt": 1744042206,
+        "tags": [],
+        "domains": ""
     }
 }
