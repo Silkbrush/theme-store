@@ -82,5 +82,25 @@
         "updatedAt": 1744042206,
         "tags": [],
         "domains": ""
+    },
+    "850cb8bb-a8e9-4376-9d8c-cf63c1a49597": {
+        "type": 0,
+        "name": "zen-wireframe (Catppuccin Mocha)",
+        "description": "This theme is a fork of zen-wireframe originally by napuzu. This fork focuses on a future variety of themes, the revival of the original theme, and slightly new features. For now, this fork has two themes, catppuccin mocha, and rose-pine. More themes are able to be requested, or added by community.",
+        "author": "undefinedcode",
+        "authorUrl": "https://github.com/undefinedcode0",
+        "homepage": "https://github.com/undefinedcode0/zen-wireframe",
+        "version": "1.5.1",
+        "createdAt": 1745174493,
+        "updatedAt": 1745174493,
+        "tags": [],
+        "domains": [
+            "about:privatebrowsing",
+            "about:home",
+            "about:newtab",
+            "about:preferences",
+            "about:addons",
+            "about:protections"
+        ]
     }
 }
