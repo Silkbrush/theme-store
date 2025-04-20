@@ -1,0 +1,12 @@
+{
+    "files": "",
+    "folders": [
+        "themes/catppuccin-mocha"
+    ],
+    "uclChromeTarget": [
+        "catppuccin-mocha/userChrome.css"
+    ],
+    "uclContentTarget": [
+        "catppuccin-mocha/userContent.css"
+    ]
+}
