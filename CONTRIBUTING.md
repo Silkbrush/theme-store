@@ -33,8 +33,11 @@ If a theme is broken, you can report it using the "Report borked theme" issue te
 will review your report then ask the theme creator to submit a patch as soon as possible. If this cannot be
 done within a reasonable timeframe, we may remove the theme from the store.
 
-**Please ensure any theme breakages are not caused by theme conflicts.** If you are unsure, try testing the
-theme on a clean profile without any other custom themes/CSS applied.
+If possible, please consider reporting the issue directly to the theme developer first.
+
+> [!CAUTION]
+> **Please ensure any theme breakages are not caused by theme conflicts.** If you are unsure, try testing
+> the theme on a clean profile without any other custom themes/CSS applied.
 
 ## Disclaimers
 ### AGPLv3 license
