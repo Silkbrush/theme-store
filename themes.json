@@ -102,5 +102,25 @@
             "about:addons",
             "about:protections"
         ]
+    },
+    "63556ee3-b89a-40d9-8f72-04f7b6c1aacc": {
+        "type": 0,
+        "name": "zen-wireframe (Rose-Pine)",
+        "description": "This theme is a fork of zen-wireframe originally by napuzu. This fork focuses on a future variety of themes, the revival of the original theme, and slightly new features. For now, this fork has two themes, catppuccin mocha, and rose-pine. More themes are able to be requested, or added by community.",
+        "author": "undefinedcode",
+        "authorUrl": "https://github.com/undefinedcode0",
+        "homepage": "https://github.com/undefinedcode0/zen-wireframe",
+        "version": "1.6",
+        "createdAt": 1745249684,
+        "updatedAt": 1745249684,
+        "tags": [],
+        "domains": [
+            "about:privatebrowsing",
+            "about:home",
+            "about:newtab",
+            "about:preferences",
+            "about:addons",
+            "about:protections"
+        ]
     }
 }

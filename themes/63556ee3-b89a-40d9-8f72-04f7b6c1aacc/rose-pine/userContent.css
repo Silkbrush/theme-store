@@ -1,0 +1,126 @@
+/* Original code by napuzu. Modifications by undefinedcode0 */
+
+@-moz-document url("about:privatebrowsing") {
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --na-color-text: #e0def4 !important;
+      --na-color-bg: #191724 !important;
+    }
+  }
+}
+
+@-moz-document url("about:newtab"), url("about:home") {
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --na-color-text: #e0def4 !important;
+      --na-color-bg: #191724 !important;
+    }
+  }
+
+}
+
+@-moz-document url("about:newtab"), url("about:home"), url("about:privatebrowsing") {
+
+  #root,
+  .container {
+    display: none;
+  }
+
+  body:after {
+    font-weight: 500;
+    position: absolute;
+    margin: auto;
+    color: var(--na-color-text);
+    font-size: 200%;
+    background-color: var(--na-color-bg);
+    /* eee9d899 d1cfc099 */
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    content: '░░▒▒▓▓';
+    /* '░░▒▒▓▓' */
+    visibility: visible;
+    background-image: '';
+    /* url(loading.gif) */
+    background-size: 3em;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+/* Common variables affecting all pages */
+  @-moz-document url-prefix("about:") {
+    :root {
+      --in-content-page-color: #e0def4 !important;
+      --color-accent-primary: #c4a7e7 !important;
+      --color-accent-primary-hover: #e0def4 !important;
+      --color-accent-primary-active: rgb(189, 180, 254) !important;
+      background-color: #191724 !important;
+      --in-content-page-background: #191724 !important;
+    }
+
+  }
+
+
+/* Variables and styles specific to about:preferences */
+  @-moz-document url-prefix("about:preferences") {
+    :root {
+      --zen-colors-tertiary: #1f1d2e !important;
+      --in-content-text-color: #e0def4 !important;
+      --link-color: #c4a7e7 !important;
+      --link-color-hover: rgb(206, 212, 254) !important;
+      --zen-colors-primary: #1f1d2e !important;
+      --in-content-box-background: #1f1d2e !important;
+      --zen-primary-color: #c4a7e7 !important;
+    }
+
+    groupbox , moz-card{
+      background: #191724 !important;
+    }
+
+    button,
+    groupbox menulist {
+      background: #1f1d2e !important;
+      color: #e0def4 !important;
+    }
+
+    .main-content {
+      background-color: #191724 !important;
+    }
+
+  /* Variables and styles specific to about:addons */
+  @-moz-document url-prefix("about:addons") {
+    :root {
+      --zen-dark-color-mix-base: #1f1d2e !important;
+      --background-color-box: #191724 !important;
+    }
+  }
+
+  /* Variables and styles specific to about:protections */
+  @-moz-document url-prefix("about:protections") {
+    :root {
+      --zen-primary-color: #191724 !important;
+      --social-color: #c4a7e7 !important;
+      --coockie-color: #9ccfd8 !important;
+      --fingerprinter-color: #f6c177 !important;
+      --cryptominer-color: #b4befe !important;
+      --tracker-color: #a6e3a1 !important;
+      --in-content-primary-button-background-hover: #908caa !important;
+      --in-content-primary-button-text-color-hover: #e0def4 !important;
+      --in-content-primary-button-background: #6e6a86 !important;
+      --in-content-primary-button-text-color: #e0def4 !important;
+    }
+
+
+    .card {
+      background-color: #313244 !important;
+    }
+  }
+
+* {
+    /* font-family: 'JetBrainsMono Nerd Font' !important;*/
+    border-radius: 0px !important;
+}
