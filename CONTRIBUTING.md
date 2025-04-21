@@ -48,3 +48,5 @@ terms of the AGPLv3 license. Please read LICENSE for more info.
 We at Silkbrush reserve all rights to remove any contribution from the repository for any reason with or
 without notice. Regardless, theme store maintainers are encouraged to provide clear reason for their removal
 decisions where possible.
+
+If you believe your contribution was removed in mistake, please let us know so we can reverse the change.
