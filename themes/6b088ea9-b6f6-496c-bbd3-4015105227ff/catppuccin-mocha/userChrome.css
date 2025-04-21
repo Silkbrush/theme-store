@@ -1,4 +1,11 @@
 /* Original code by napuzu. Modifications by undefinedcode0 */
+:root {
+    --na-border-radius: 0px;
+    --na-border-radius-small: 0px;
+    --na-window-margin: 12px;
+    --na-anim-duration: 0.3s;
+    --na-urlbar-width: 60vw; /* vw: viewport or your browser width, 100vw means 100% browser width */
+}
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -10,7 +17,9 @@
         --zen-color-accent: #b4befe !important;
         --zen-text-primary: #cdd6f4 !important;
         --zen-tab-selected-text: rgb(192, 202, 249) !important;
+        --zen-select-bg: #45475a !important;
         --na-color-zero: rgba(0, 0, 0, 0);
+        --zen-border-bottom: var(--zen-select-bg) !important;
 
         /* ——— Derived variables ——— */
         --zen-colors-primary: var(--zen-bg-primary) !important;
@@ -286,20 +295,27 @@ panelview {
 #urlbar {
     top: auto !important;
 
-    &[open] {
-        min-width: var(--na-urlbar-width) !important;
-        max-width: var(--na-urlbar-width) !important;
-        left: calc((100vw - var(--na-urlbar-width)) / 2) !important;
-        right: calc((100vw - var(--na-urlbar-width)) / 2) !important;
-        display: flex !important;
-        flex-direction: column !important;
-        bottom: 62.5px !important;
-    }
-
     /* move urlbar input to bottom*/
     & > .urlbar-input-container {
         order: 1 !important;
     }
+}
+
+#urlbar[open] {
+    position: fixed !important;
+    bottom: 62.5px !important;
+
+    /* set your bar’s width directly */
+    width: var(--na-urlbar-width) !important;
+
+    /* center it */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    /* flex and stacking */
+    display: flex !important;
+    flex-direction: column !important;
+    z-index: 1000 !important;
 }
 
 /* navbar padding */
@@ -387,7 +403,7 @@ panelview {
 /* tabs hover animation */
 .tabbrowser-tab:hover .tab-label-container,
 .tabbrowser-tab:hover .tab-icon-stack {
-    animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+    animation: slideUpAdressBar var(--na-anim-duration) ease;
 }
 
 /* focused tab */
@@ -408,7 +424,7 @@ panelview {
 
 /* selected tab background */
 .tabbrowser-tab[selected]:not([zen-essential]) > stack > vbox {
-    background: #45475a !important;
+    background: var(--zen-select-bg) !important;
 }
 
 /* unfocused tabs */
@@ -635,8 +651,6 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
 #urlbar > .urlbar-input-container > .urlbar-input-box::before {
     content: "Loading" !important;
     padding-inline: 10px !important;
-    animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
-    animation-play-state: paused;
     transition: opacity 0.6s;
     align-self: center;
     visibility: collapse !important;
@@ -805,11 +819,11 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
 
         & .urlbarView-row:hover {
             border-radius: var(--na-border-radius) !important;
-            background-color: var(--na-color-text-second) !important;
+            background-color: var(--zen-select-bg) !important;
         }
 
         & .urlbarView-row[selected] .urlbarView-title {
-            animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+            animation: slideUpAdressBar var(--na-anim-duration) ease;
             color: var(--na-color-bg) !important;
         }
 
@@ -818,7 +832,7 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
         }
 
         & .urlbarView-row:hover .urlbarView-title {
-            animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+            animation: slideUpAdressBar var(--na-anim-duration) ease;
             color: var(--na-color-text) !important;
         }
 
@@ -1204,7 +1218,7 @@ findbar {
             width: 100% !important;
             margin-top: 5px !important;
             padding-bottom: 10px !important;
-            border-bottom: 1px solid #45475a
+            border-bottom: 1px solid var(--zen-border-bottom)
                 /* light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) */ !important;
 
             &::before {
@@ -1234,7 +1248,7 @@ findbar {
 
                 &::-moz-selection {
                     /* light-dark(var(--natsumi-primary-color), color-mix(in srgb, var(--natsumi-colors-primary) 60%, white)) */
-                    background: #45475a !important;
+                    background: var(--zen-select-bg) !important;
                 }
             }
 
