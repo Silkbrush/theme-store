@@ -122,5 +122,25 @@
             "about:addons",
             "about:protections"
         ]
+    },
+    "660c3485-4292-4021-a204-33dccbc89b89": {
+        "type": 0,
+        "name": "zen-wireframe (ZER\u00d8)",
+        "description": "This theme is a fork of zen-wireframe originally by napuzu. This fork focuses on a future variety of themes, the revival of the original theme, and slightly new features. For now, this fork has three themes, catppuccin mocha, rose-pine, and ZER\u00d8. More themes are able to be requested, or added by community.",
+        "author": "undefinedcode",
+        "authorUrl": "https://github.com/undefinedcode0",
+        "homepage": "https://github.com/undefinedcode0/zen-wireframe",
+        "version": "1.7",
+        "createdAt": 1745356823,
+        "updatedAt": 1745356823,
+        "tags": [],
+        "domains": [
+            "about:privatebrowsing",
+            "about:home",
+            "about:newtab",
+            "about:preferences",
+            "about:addons",
+            "about:protections"
+        ]
     }
 }
