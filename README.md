@@ -30,7 +30,7 @@ guidelines](https://github.com/Silkbrush/theme-store/blob/main/CONTRIBUTING.md).
 When you submit a theme, you will need to specify which files and folders to copy from the repository. All
 file and folder paths should be relative to the root of your repository.
 
-You can submit multiple files and folders, but you must submit at least one of them.
+You can submit multiple files and folders, but you must submit at least one file or folder.
 
 ### Specifying load points
 Silkthemes uses the [uCL standards](https://github.com/greeeen-dev/userchrome-loader/) for loading and
@@ -55,3 +55,11 @@ website of their choice.
 >
 > You may only use domains and subdomains in this field, such as `github.com` and `next.unifierhq.org`.
 > Please do not use full URLs like `https://github.com` or `zen-browser.app/mods`.
+
+## Updating themes
+Silkthemes has a more automated theme update workflow. To request an update, open the "Update theme" issue,
+and the repository will automatically pull files from your repository and update the themes.json file.
+
+### What happens if I update copied files/folders, load points, etc.?
+If you decide to update these fields, the current ones will be overwritten by the ones you've specified in
+your issue body. The theme store will not attempt to merge current and new values.
