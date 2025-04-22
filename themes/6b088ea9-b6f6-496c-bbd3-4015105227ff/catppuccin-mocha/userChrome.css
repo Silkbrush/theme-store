@@ -1,6 +1,7 @@
 /* Original code by napuzu. Modifications by undefinedcode0 */
+
 :root {
-    --na-border-radius: 0px;
+    --na-border-radius: 0.5rem;
     --na-border-radius-small: 0px;
     --na-window-margin: 12px;
     --na-anim-duration: 0.3s;
@@ -483,7 +484,7 @@ panelview {
 /* bottombar */
 #zen-appcontent-navbar-container {
     border: 0px solidvar(--na-color-border) !important;
-    border-radius: 0px !important;
+    border-radius: var(--na-border-radius) !important;
     border-color: var(--na-color-border) !important;
     background-color: var(--na-color-bg) !important;
     padding-block: 1px !important;
@@ -515,7 +516,6 @@ menupopup,
 panel {
     --panel-background: var(--na-color-bg) !important;
     -moz-appearance: none !important;
-    border: 2px solid var(--na-color-border) !important;
 }
 
 #ContentSelectDropdown
@@ -651,6 +651,8 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
 #urlbar > .urlbar-input-container > .urlbar-input-box::before {
     content: "Loading" !important;
     padding-inline: 10px !important;
+    animation: slideUpAdressBar var(--na-anim-duration) ease;
+    animation-play-state: paused;
     transition: opacity 0.6s;
     align-self: center;
     visibility: collapse !important;
@@ -894,11 +896,11 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
         }
 
         & .searchbar-engine-one-off-item[selected] hbox {
-            animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+            animation: slideUpAdressBar var(--na-anim-duration) ease;
         }
 
         & .searchbar-engine-one-off-item:hover hbox {
-            animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+            animation: slideUpAdressBar var(--na-anim-duration) ease;
         }
     }
 }
@@ -1008,7 +1010,7 @@ body > hbox {
 
 /* content window border radius */
 .browserSidebarContainer {
-    border-radius: 0px !important;
+    border-radius: var(--na-border-radius) !important;
 }
 
 /* content window border size on RIGHT side tabbar */
@@ -1051,7 +1053,7 @@ body > hbox {
 /* content window + address bar */
 #zen-appcontent-wrapper {
     background-color: var(--na-color-bg) !important;
-    border-radius: 0px !important;
+    border-radius: var(--na-border-radius) !important;
     margin: 0px !important;
     padding: 0px !important;
 }
@@ -1142,11 +1144,11 @@ findbar {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: #b4befe;
+            background-color: var(--zen-color-accent);
 
             bottom: 0;
             left: 0;
-            border-radius: 0px;
+            border-radius: var(--na-border-radius);
         }
     }
 
@@ -1336,7 +1338,7 @@ findbar {
   padding: 0px !important;
   margin: 0px !important;
   border: 1px solid #b4befe !important;
-  border-radius: 0px !important;
+  border-radius: var(--na-border-radius) !important;
   min-width: calc(100% - 40px) !important;
   height: 40px !important;
   visibility: visible !important;
@@ -1485,5 +1487,4 @@ findbar {
 
 * {
     font-family: "JetBrainsMono Nerd Font" !important;
-    border-radius: 0px !important;
 }
