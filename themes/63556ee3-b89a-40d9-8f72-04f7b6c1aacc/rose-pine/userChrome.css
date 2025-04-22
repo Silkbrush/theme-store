@@ -1,7 +1,8 @@
 /* Original code by napuzu. Modifications by undefinedcode0 */
+
 :root {
-    --na-border-radius: 0px;
-    --na-border-radius-small: 0px;
+    --na-border-radius: 0.5rem;
+    --na-border-radius-small: 0.5rem;
     --na-window-margin: 12px;
     --na-anim-duration: 0.3s;
     --na-urlbar-width: 60vw; /* vw: viewport or your browser width, 100vw means 100% browser width */
@@ -317,6 +318,11 @@ panelview {
     z-index: 1000 !important;
 }
 
+/* navbar padding */
+.urlbar-input-container {
+    padding-inline: 2px !important;
+}
+
 /* === SIDEBAR - MULTIPLE TOOLBAR === */
 
 /* docked sidebar */
@@ -418,7 +424,7 @@ panelview {
 
 /* selected tab background */
 .tabbrowser-tab[selected]:not([zen-essential]) > stack > vbox {
-    background: #45475a !important;
+    background: var(--zen-select-bg) !important;
 }
 
 /* unfocused tabs */
@@ -477,7 +483,7 @@ panelview {
 /* bottombar */
 #zen-appcontent-navbar-container {
     border: 0px solidvar(--na-color-border) !important;
-    border-radius: 0px !important;
+    border-radius: var(--na-border-radius) !important;
     border-color: var(--na-color-border) !important;
     background-color: var(--na-color-bg) !important;
     padding-block: 1px !important;
@@ -509,7 +515,6 @@ menupopup,
 panel {
     --panel-background: var(--na-color-bg) !important;
     -moz-appearance: none !important;
-    border: 2px solid var(--na-color-border) !important;
 }
 
 #ContentSelectDropdown
@@ -629,7 +634,7 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
         background-color: color-mix(
             in srgb,
             var(--zen-colors-tertiary) 70%,
-            #191724 30%
+            #1e1e2e 30%
         ) !important;
     }
 }
@@ -645,6 +650,8 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
 #urlbar > .urlbar-input-container > .urlbar-input-box::before {
     content: "Loading" !important;
     padding-inline: 10px !important;
+    animation: slideUpAdressBar var(--na-anim-duration) ease;
+    animation-play-state: paused;
     transition: opacity 0.6s;
     align-self: center;
     visibility: collapse !important;
@@ -888,11 +895,11 @@ menupopup#ContentSelectDropdownPopup > menuitem[selected="true"] {
         }
 
         & .searchbar-engine-one-off-item[selected] hbox {
-            animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+            animation: slideUpAdressBar var(--na-anim-duration) ease;
         }
 
         & .searchbar-engine-one-off-item:hover hbox {
-            animation: slideUpAdressBar var(--na-anim-duration) ease infinite;
+            animation: slideUpAdressBar var(--na-anim-duration) ease;
         }
     }
 }
@@ -1002,7 +1009,7 @@ body > hbox {
 
 /* content window border radius */
 .browserSidebarContainer {
-    border-radius: 0px !important;
+    border-radius: var(--na-border-radius) !important;
 }
 
 /* content window border size on RIGHT side tabbar */
@@ -1045,7 +1052,7 @@ body > hbox {
 /* content window + address bar */
 #zen-appcontent-wrapper {
     background-color: var(--na-color-bg) !important;
-    border-radius: 0px !important;
+    border-radius: var(--na-border-radius) !important;
     margin: 0px !important;
     padding: 0px !important;
 }
@@ -1124,7 +1131,7 @@ findbar {
         box-shadow 0.2s ease,
         filter 0.2s ease !important;
     animation: initial-animation 0.2s ease;
-    /* box-shadow: 0 0 10px #c4a7e7 !important; */
+    /* box-shadow: 0 0 10px #b4befe !important; */
 
     .findbar-container hbox[anonid="findbar-textbox-wrapper"] {
         border-bottom: 2px solid transparent !important;
@@ -1140,7 +1147,7 @@ findbar {
 
             bottom: 0;
             left: 0;
-            border-radius: 0px;
+            border-radius: var(--na-border-radius);
         }
     }
 
@@ -1212,7 +1219,7 @@ findbar {
             width: 100% !important;
             margin-top: 5px !important;
             padding-bottom: 10px !important;
-            border-bottom: 1px solid var(--na-color-border)
+            border-bottom: 1px solid var(--zen-border-bottom)
                 /* light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) */ !important;
 
             &::before {
@@ -1242,7 +1249,7 @@ findbar {
 
                 &::-moz-selection {
                     /* light-dark(var(--natsumi-primary-color), color-mix(in srgb, var(--natsumi-colors-primary) 60%, white)) */
-                    background: var(--na-color-border) !important;
+                    background: var(--zen-select-bg) !important;
                 }
             }
 
@@ -1329,8 +1336,8 @@ findbar {
 findbar {
   padding: 0px !important;
   margin: 0px !important;
-  border: 1px solid #c4a7e7 !important;
-  border-radius: 0px !important;
+  border: 1px solid #b4befe !important;
+  border-radius: var(--na-border-radius) !important;
   min-width: calc(100% - 40px) !important;
   height: 40px !important;
   visibility: visible !important;
@@ -1437,49 +1444,6 @@ findbar {
     padding: 0px !important;
 }
 
-/* removed in rose-pine theme due to colors missing from the palette
-.identity-color-blue {
-    --identity-tab-color: #89b4fa !important;
-    --identity-icon-color: #89b4fa !important;
-}
-
-.identity-color-turquoise {
-    --identity-tab-color: #94e2d5 !important;
-    --identity-icon-color: #94e2d5 !important;
-}
-
-.identity-color-green {
-    --identity-tab-color: #a6e3a1 !important;
-    --identity-icon-color: #a6e3a1 !important;
- }
-
-.identity-color-yellow {
-    --identity-tab-color: #f9e2af !important;
-    --identity-icon-color: #f9e2af !important;
- }
-
-.identity-color-orange {
-    --identity-tab-color: #fab387 !important;
-    --identity-icon-color: #fab387 !important;
- }
-
-.identity-color-red {
-    --identity-tab-color: #f38ba8 !important;
-    --identity-icon-color: #f38ba8 !important;
- }
-
-.identity-color-pink {
-    --identity-tab-color: #f5c2e7 !important;
-    --identity-icon-color: #f5c2e7 !important;
- }
-
-.identity-color-purple {
-    --identity-tab-color: #cba6f7 !important;
-    --identity-icon-color: #cba6f7 !important;
- }
- */
-
 * {
     font-family: "JetBrainsMono Nerd Font" !important;
-    border-radius: 0px !important;
 }
