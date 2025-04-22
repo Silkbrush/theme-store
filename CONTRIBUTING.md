@@ -50,3 +50,8 @@ without notice. Regardless, theme store maintainers are encouraged to provide cl
 decisions where possible.
 
 If you believe your contribution was removed in mistake, please let us know so we can reverse the change.
+
+> [!IMPORTANT]
+> Although theme store maintainers are not necessarily required to disclose reasons for removing themes,
+> they may not remove any themes for subjective or invalid reasons (such as the theme apparently looking
+> "ugly" to the maintainers).
