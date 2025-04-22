@@ -15,6 +15,7 @@ Zen Mods has various issues, such as:
 - Vague/nonexistent submission guidelines
 - Harder to submit larger projects (like [Natsumi](https://github.com/greeeen-dev/natsumi-browser) and
   [Nebula](https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser))
+- [Removals for subjective reasons](https://www.reddit.com/r/zen_browser/comments/1k3omn0/comment/mo5jjp9)
 
 Silkthemes is an alternative to Zen Mods which aims to solve many of these issues. It's not perfect, but we
 still aim to make it the best place possible to install and share themes for Zen Browser.
