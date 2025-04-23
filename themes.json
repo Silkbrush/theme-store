@@ -5,6 +5,7 @@
         "description": "A userchrome for Zen Browser that makes things flow.",
         "author": "Green",
         "authorUrl": "https://github.com/greeeen-dev",
+        "image": "https://raw.githubusercontent.com/greeeen-dev/natsumi-browser/refs/heads/main/images/main.png",
         "homepage": "https://github.com/greeeen-dev/natsumi-browser",
         "version": "3.0.3",
         "createdAt": 1743845534,
