@@ -68,3 +68,10 @@ body:
         e.g. google.com, youtube.com. Separate each domain using new lines. If left empty, we'll use the current domains. Enter !erase to remove all domains.
     validations:
       required: false
+  - type: textarea
+    id: thumbnail
+    attributes:
+      label: What image URL should we use for the thumbnail?
+      placeholder: e.g. https://github.com/greeeen-dev/natsumi-browser/blob/main/images/main.png?raw=true
+      description: >
+        If left empty, we'll use the current thumbnail.

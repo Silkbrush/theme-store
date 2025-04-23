@@ -11,7 +11,8 @@ mappings = {
     'copy_file': 'files',
     'copy_folder': 'folders',
     'load_chrome': 'uclChromeTarget',
-    'load_content': 'uclContentTarget'
+    'load_content': 'uclContentTarget',
+    'thumbnail': 'image'
 }
 
 with open('/home/runner/issue-parser-result.json', 'r') as file:

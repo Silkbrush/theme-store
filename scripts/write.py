@@ -104,6 +104,7 @@ theme_data = {
     "description": data['description'],
     "author": data['author'],
     "authorUrl": f"https://github.com/{sys.argv[1]}",
+    "image": data['thumbnail'],
     "homepage": data['repo'],
     "version": data['version'],
     "createdAt": round(time.time()),

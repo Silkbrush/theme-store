@@ -88,3 +88,10 @@ body:
       label: What should we call you on the theme store?
       description: >
         If left empty, we'll use your GitHub username.
+  - type: textarea
+    id: thumbnail
+    attributes:
+      label: What image URL should we use for the thumbnail?
+      placeholder: e.g. https://github.com/greeeen-dev/natsumi-browser/blob/main/images/main.png?raw=true
+      description: >
+        This isn't required but it is recommended.
