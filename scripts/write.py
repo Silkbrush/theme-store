@@ -119,6 +119,14 @@ theme_install_data = {
     "uclContentTarget": data['load_content']
 }
 
+for key, file in theme_install_data['files'].items():
+    if '/' in file:
+        theme_install_data['files'][key] = file.split('/')[-1]
+
+for key, folder in theme_install_data['folders'].items():
+    if '/' in folder:
+        theme_install_data['folders'][key] = folder.split('/')[-1]
+
 with open('themes.json', 'r') as file:
     themes = json.load(file)
 

@@ -1,7 +1,7 @@
 {
     "files": "",
     "folders": [
-        "themes/zero"
+        "zero"
     ],
     "uclChromeTarget": [
         "zero/userChrome.css"

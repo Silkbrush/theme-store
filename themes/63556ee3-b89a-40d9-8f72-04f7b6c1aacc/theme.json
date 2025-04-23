@@ -1,7 +1,7 @@
 {
     "files": "",
     "folders": [
-        "themes/rose-pine"
+        "rose-pine"
     ],
     "uclChromeTarget": [
         "rose-pine/userChrome.css"

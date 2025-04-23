@@ -1,7 +1,7 @@
 {
     "files": "",
     "folders": [
-        "themes/catppuccin-mocha"
+        "catppuccin-mocha"
     ],
     "uclChromeTarget": [
         "catppuccin-mocha/userChrome.css"
