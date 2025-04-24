@@ -87,7 +87,7 @@ with open('themes.json', 'w+') as file:
     json.dump(themes, file, indent=4)
 
 gh_username = themes[data["id"]]["homepage"].replace('https://github.com/', '', 1).split('/')[0]
-if not gh_username == sys.argv[1]:
+if not gh_username.lower() == sys.argv[1].lower():
     print('ERROR: Repository owner mismatch.')
     print('You don\'t own this repository.')
     sys.exit(1)
