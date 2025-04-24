@@ -54,4 +54,4 @@ If you believe your contribution was removed in mistake, please let us know so w
 > [!IMPORTANT]
 > Although theme store maintainers are not necessarily required to disclose reasons for removing themes,
 > they may not remove any themes for subjective or invalid reasons (such as the theme apparently looking
-> "ugly" to the maintainers).
+> "ugly" to the maintainers) unless there is community consensus on removing it.
