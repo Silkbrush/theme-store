@@ -59,7 +59,7 @@ if not data['load_chrome'] and not data['load_content']:
     sys.exit(1)
 
 gh_username = data['repo'].replace('https://github.com/', '', 1).split('/')[0]
-if not gh_username == sys.argv[1]:
+if not gh_username.lower() == sys.argv[1].lower():
     print('ERROR: Repository owner mismatch.')
     print('You don\'t own this repository.')
     sys.exit(1)
