@@ -102,14 +102,6 @@ for key in to_update_install:
     mapped = mappings.get(key, key)
     install_data[mapped] = data[key]
 
-for key, file in install_data['files'].items():
-    if '/' in file:
-        install_data['files'][key] = file.split('/')[-1]
-
-for key, folder in install_data['folders'].items():
-    if '/' in folder:
-        install_data['folders'][key] = folder.split('/')[-1]
-
 with open(f'{theme_dir}/theme.json', 'w+') as file:
     # noinspection PyTypeChecker
     json.dump(install_data, file, indent=4)
