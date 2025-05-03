@@ -1,6 +1,9 @@
 /* === PLAYING/MUTE ICON APPEARANCE CUSTOMIZATION ========================================================================== */
+span[part="button"].button-background {
+  display: none !important; /* removes sound button added in 1.12t */
+}
 
-@media not (-moz-bool-pref: "lacuna.tab.default-audio-indicator") {
+@media not (-moz-pref("lacuna.tab.default-audio-indicator")) {
     .tabbrowser-tab img {
       transition: opacity 0.3s ease-in-out;
     }
@@ -53,7 +56,7 @@
       }
     }
   
-    @media not (-moz-bool-pref: "zen.view.sidebar-expanded") {
+    @media not (-moz-pref("zen.view.sidebar-expanded")) {
       .tabbrowser-tab:is([soundplaying], [muted], [activemedia-blocked]):hover
         img {
         opacity: 1 !important;
@@ -80,7 +83,7 @@
   }
   
   /* Better rounded workspace indicator */
-  @media (-moz-bool-pref: "zen.theme.pill-button") {
+    @media (-moz-pref("zen.theme.pill-button")) {
     #PanelUI-zen-workspaces-list toolbarbutton {
       &.zen-workspace-button[active="true"] .zen-workspace-icon::before {
         background-color: transparent !important;

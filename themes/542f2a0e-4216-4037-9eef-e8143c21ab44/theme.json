@@ -1,5 +1,10 @@
 {
-    "files": "",
+    "files": [
+        "userChrome.css",
+        "userContent.css",
+        "Nebula-updater (Windows).bat",
+        "Nebula_updater (Linux Flatpak).sh"
+    ],
     "folders": [
         "Nebula"
     ],

@@ -1,0 +1,54 @@
+/* This is the config guide for Nebula theme
+Here you can tweak the various settings like animations, features, etc. to your own preference 
+by changing the variables or adding preferences in about:config
+without searching through the code directly */
+
+
+/* Tab Animations
+    1. Tab switch animations
+          Go to about:config and add a "number" "nebula-tab-switch-animation"
+                                                Set number to 0 (for no animation)
+                                                Set number to 2 (for style 2 which is more bouncy)
+                                                Set number to 3 (for style 3 which is more bounce than default but very light)
+                                                Set number to 4 (for style 4 which has no blur but instead smooth crossfade)
+                                                By default the style is set to 1 but no need to add its config
+
+    2. Tab loading animations
+          Go to about:config and add a "number" "nebula-tab-loading-animation"
+                                                Set number to 0 (for no animation)
+                                                Set number to 2 (for style 2 which is more prominant)
+                                                Set number to 3 (for style 3 which is lighter)
+                                                Set number to 4 (for style 4 which has no blur but grayscale when loading)
+                                                Set number to 5 (for style 5 which has blur + grayscale)
+                                                By default the style is set to 1 but no need to add its config
+*/
+
+/* Glow Animations
+    1. Nebula hover glow animations
+          Go to about:config and add a "number" "nebula-glow-gradient"
+                                                Set number to 0 (for no animation)
+                                                Set number to 2 (for monochrome gradient)
+                                                Set number to 3 (for RGB gradient)
+                                                By default the style is set to 1 but no need to add its config
+                                                Note: these gradient presets apply to: tabs, Essentials, urlbar, miniplayer, extensions, and links when hovering over
+*/
+
+/* URLbar Animations
+    1. URLbar opening animations
+         Go to about:config and add a "number" "nebula-urlbar-animation"
+                                               Set number to 0 (for no animation)
+                                               Set number to 2 (for style 2 which is more heavy)
+                                               Set number to 3 (for style 3 which has no blur but instead grayscale for background)
+                                               By default the style is set to 1 but no need to add its config
+
+
+/* Customize the look! */
+:root {
+    /* Nebula border radius (Affects tabs, Essentials, urlbar, miniplayer, extensions, workspace button)*/ 
+        --nebula-border-radius: 13px; /* This will change roundness of everything in Nebula (DEFAULT: 12px) */
+        --nebula-website-tint: light-dark(rgba(255,255,255,0),rgba(0,0,0,0)); /* Edit the color values to change the tint on transparent websites */
+        --nebula-ui-tint: light-dark(rgba(255,255,255,0.12),rgba(0,0,0,0.12)); /* Edit the color values to change the tint of sidebar and etc. */
+  }
+  
+  /* DO NOT ADD OTHER CSS BELOW */
+  /* More styles and options will come soon here! */

@@ -1,37 +1,116 @@
 /* ======= FLOATING URL BAR ANIMATION/BLUR ========= */
-
-/* Common Animation Variables */
-:root {
-  --url-animation-timing: cubic-bezier(0.175, 0.885, 0.32, 1.35);
-  --url-animation-duration: 0.3s;
-  --url-blur-gradient: linear-gradient(
-    45deg,
-    color-mix(in srgb, var(--zen-primary-color) 5%, black),  
-    color-mix(in srgb, var(--zen-primary-color) 30%, black),  
-    color-mix(in srgb, var(--zen-primary-color) 75%, black),  
-    color-mix(in srgb, var(--zen-primary-color) 100%, black),
-    color-mix(in srgb, var(--zen-primary-color) 50%, black),  
-    color-mix(in srgb, var(--zen-primary-color) 15%, black)
-  );
-  --url-border-radius: 12px;
+#urlbar-input::placeholder {
+  opacity: 0.4 !important;
 }
 
-/* Blur background when URL bar opens */
-#browser:has(#urlbar[open]) .browserContainer {
-  filter: blur(1.5rem) brightness(70%) saturate(180%) !important;
-  opacity: 0.7 !important;
-  scale: 1.15 !important;
-  transition: all var(--url-animation-duration) var(--url-animation-timing) !important;
+#urlbar[open] {
+  position: relative !important;
+  border-radius: 13px !important;
+  overflow: hidden !important;
 }
 
-/* Reset blur when URL bar is closed */
-.browserContainer:not(:has(#urlbar[open])) {
-  filter: none !important;
-  opacity: 1 !important;
-  scale: 1 !important;
-  transition: filter var(--url-animation-duration) var(--url-animation-timing), 
-              opacity var(--url-animation-duration) var(--url-animation-timing), 
-              scale var(--url-animation-duration) var(--url-animation-timing) !important;
+/* Default base (shared): */
+#urlbar[open]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px !important;
+  background: light-dark(rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.2)); /* Base for Style 0 */
+  backdrop-filter: blur(20px);
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* === Style 1, 2, 3 – More transparent and light === */
+@media (-moz-pref("nebula-urlbar-animation", 2)),
+       (-moz-pref("nebula-urlbar-animation", 3)) {
+  #urlbar[open]::before {
+    background: light-dark(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)) !important;
+    backdrop-filter: blur(2px) !important;
+  }
+}
+@media (-moz-pref("nebula-urlbar-animation", 1)) {
+  #urlbar[open]::before {
+    background: light-dark(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)) !important;
+    backdrop-filter: blur(2px) !important;
+  }
+}
+/* === Style 4 – Much lighter background === */
+@media (-moz-pref("nebula-urlbar-animation", 4)) {
+  #urlbar[open]::before {
+    background: light-dark(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.05)) !important;
+    backdrop-filter: blur(2px) !important;
+  }
+}
+
+/* --------------------------------------------------------------- */
+/*Style 1 – Default Animation*/
+  #browser:has(#urlbar[open]) .browserContainer {
+    filter: blur(1rem) brightness(50%) saturate(180%) !important;
+    opacity: 1 !important;
+    scale: 1.075 !important;
+    transition: all 0.25s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+  }
+
+  .browserContainer:not(:has(#urlbar[open])) {
+    filter: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
+    transition:
+      filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+      opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+      scale 0.2s cubic-bezier(0.175, 0.885, 0.32, 1) !important;
+  }
+
+/*Style 2 – Heavy scale and Blur*/
+@media (-moz-pref("nebula-urlbar-animation", 2)) {
+  #browser:has(#urlbar[open]) .browserContainer {
+    filter: blur(1.5rem) brightness(70%) saturate(180%) !important;
+    opacity: 0.7 !important;
+    scale: 1.1 !important;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+  }
+
+  .browserContainer:not(:has(#urlbar[open])) {
+    filter: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
+    transition:
+      filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+      opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+      scale 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
+  }
+}
+
+/*Style 3 – Desaturate and Darken*/
+@media (-moz-pref("nebula-urlbar-animation", 3)) {
+  #browser:has(#urlbar[open]) .browserContainer {
+    filter: saturate(0%) brightness(20%) !important;
+    opacity: 0.85 !important;
+    scale: 1.05 !important;
+    transition: all 0.25s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+  }
+  .browserContainer:not(:has(#urlbar[open])) {
+    filter: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
+    transition:
+      filter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+      opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.35),
+      scale 0.2s cubic-bezier(0.175, 0.885, 0.32, 1) !important;
+  }
+}
+
+/*Style 0 – No Animation*/
+@media (-moz-pref("nebula-urlbar-animation", 0)) {
+  #browser:has(#urlbar[open]) .browserContainer,
+  .browserContainer:not(:has(#urlbar[open])) {
+    filter: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
 }
 
 /* Unblur URL bar when opening */
@@ -47,19 +126,29 @@
 }
 
 #urlbar[open] {
-  animation: fadeInUnblur 0.15s ease-out forwards !important;
+  animation: fadeInUnblur 0.15s ease !important;
   backdrop-filter: blur(0px) !important;
 }
 
 /* URL bar backgrounds - shared properties */
-#urlbar-background, #urlbar[open] #urlbar-background {
-  border-radius: var(--url-border-radius) !important;
+#urlbar-background {
   padding: 10px !important;
 }
 
+/* When URL bar is NOT open */
+#urlbar:not([open]) > #urlbar-background {
+  border-radius: var(--nebula-border-radius) !important;
+}
+
+/* When URL bar IS open */
+#urlbar[open] > #urlbar-background {
+  border-radius: 12px !important;
+}
+
+
 /* URL bar background - default state */
 #urlbar-background {
-  background: light-dark(rgba(255, 255, 255, 0.42), rgba(0, 0, 0, 0.42)) !important;
+  background: light-dark(rgba(255, 255, 255, 0.342), rgba(0, 0, 0, 0.342)) !important;
   box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3)) !important;
 }
 
@@ -67,7 +156,7 @@
 #urlbar[open] #urlbar-background {
   background: light-dark(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.2)) !important;
   box-shadow: 0 20px 30px light-dark(rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.35)) !important;
-  backdrop-filter: blur(100px) !important;
+  backdrop-filter: blur(64px) !important;
 }
 
 /* URL bar zoom button position */
@@ -79,9 +168,14 @@
   left: 0 !important;
 }
 
-/* Compact mode fix */
+/* Centering fix - still bug */
+#urlbar[open],
 :root[zen-compact-mode="true"] #urlbar[open] {
-  transform: translateX(-50%) !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 9999 !important;
 }
 
 /* Fix for dancing issue */
@@ -95,9 +189,9 @@
   text-align: center !important; 
 }
 
-/*------------ URLbar loading animation --------------*/
+/*------------ URLbar loading & hover animation --------------*/
 #urlbar .urlbar-input-container {
-  border-radius: var(--url-border-radius) !important;
+  border-radius: var(--nebula-border-radius) !important;
   overflow: hidden;
   position: relative;
 }
@@ -106,10 +200,18 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--url-blur-gradient);
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--zen-primary-color) 5%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 30%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 75%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 100%, black),
+    color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 15%, black)
+  );
   background-size: 300% 100%;
   background-repeat: repeat-x;
-  clip-path: inset(0 round var(--url-border-radius));
+  clip-path: inset(0 round var(--nebula-border-radius));
   animation: urlbar-gradient 8s linear infinite;
   opacity: 0;
   filter: blur(20px) brightness(1);
@@ -122,6 +224,51 @@
 #main-window:has(.tabbrowser-tab[selected][busy]) .urlbar-input-container::before,
 #urlbar:not([open]):hover .urlbar-input-container::before {
   opacity: 0.485;
+}
+
+/* Style 0 - No gradient */
+@media (-moz-pref("nebula-glow-gradient", 0)) {
+  #urlbar .urlbar-input-container::before {
+    display: none;
+  }
+}
+
+/* Style 2 - Monochrome gradient */
+@media (-moz-pref("nebula-glow-gradient", 2)) {
+  #urlbar .urlbar-input-container::before {
+    background: linear-gradient(
+      45deg,  
+      light-dark(#dddddd, #ffffff),  
+      light-dark(#eeeeee, #dddddd),  
+      light-dark(#dddddd, #bbbbbb),  
+      light-dark(#ffffff, #000000),
+      light-dark(#eeeeee, #dddddd),  
+      light-dark(#dddddd, #ffffff)
+    );
+    background-size: 300% 100%;
+    animation: urlbar-gradient 8s linear infinite;
+    filter: blur(20px) opacity(0.6);
+  }
+}
+
+/* Style 3 - RGB gradient */
+@media (-moz-pref("nebula-glow-gradient", 3)) {
+  #urlbar .urlbar-input-container::before {
+    background: linear-gradient(45deg, #ff8a00, #e52e71, #7f00ff, #00c9ff, #ff8a00);
+    background-size: 300% 100%;
+    animation: urlbar-gradient 8s linear infinite;
+    filter: blur(20px) opacity(0.6);
+  }
+}
+
+/* Keyframes for URL bar animation */
+@keyframes urlbar-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
 }
 
 /*------ urlbar open hover links gradient animation -------*/
@@ -137,16 +284,59 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--url-blur-gradient);
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--zen-primary-color) 5%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 30%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 75%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 100%, black),
+    color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 15%, black)
+  );
   background-size: 300% 100%;
   background-repeat: repeat-x;
-  clip-path: inset(0 round var(--url-border-radius));
+  clip-path: inset(0 round 12px);
   animation: urlbar-gradient 8s linear infinite;
   opacity: 0;
-  filter: blur(5px) brightness(1);
+  filter: blur(20px) brightness(1);
   transition: opacity 0.5s ease-in-out;
   z-index: -1;
   pointer-events: none;
+}
+
+/* Style 0 - No gradient */
+@media (-moz-pref("nebula-glow-gradient", 0)) {
+  #urlbar[open] #urlbar-results > *::before {
+    display: none;
+  }
+}
+
+/* Monochrome gradient (Style 2) */
+@media (-moz-pref("nebula-glow-gradient", 2)) {
+  #urlbar[open] #urlbar-results > *::before {
+    background: linear-gradient(
+      45deg,  
+      light-dark(#dddddd, #ffffff),  
+      light-dark(#eeeeee, #dddddd),  
+      light-dark(#dddddd, #bbbbbb),  
+      light-dark(#ffffff, #000000),
+      light-dark(#eeeeee, #dddddd),  
+      light-dark(#dddddd, #ffffff)
+    );
+    background-size: 300% 100%;
+    animation: urlbar-gradient 8s linear infinite;
+    filter: blur(20px) brightness(1);
+  }
+}
+
+/* RGB gradient (Style 3) */
+@media (-moz-pref("nebula-glow-gradient", 3)) {
+  #urlbar[open] #urlbar-results > *::before {
+    background: linear-gradient(45deg, #ff8a00, #e52e71, #7f00ff, #00c9ff, #ff8a00);
+    background-size: 300% 100%;
+    animation: urlbar-gradient 8s linear infinite;
+    filter: blur(20px) brightness(1);
+  }
 }
 
 /* Smooth opacity transition on hover */
