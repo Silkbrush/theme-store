@@ -1,4 +1,6 @@
-/* Credit: Lacuna by Tanay-Kar */
+:root {
+  --sidebar-width: 18.5em !important;
+}
 
 /* === COMPACT SIDEBAR ===================================================================================================== */
 
@@ -26,9 +28,42 @@
   
 /* === BLUR COMPACT SIDEBAR ================================================================================================ */
 /* Compact sidebar with blurred transparent background */
+/* credit: arc-h ferrocene */
 body:has([zen-compact-mode="true"]) #titlebar {
-  background: light-dark(rgba(255, 255, 255, 0.4),rgba(0, 0, 0, 0.4)) !important; /* Slightly lighter dark with transparency */
-  backdrop-filter: blur(1rem) !important; /* Smooth blur effect */
+  top: calc(var(--zen-element-separation) / 1.4) !important;
+  left: calc(var(--zen-element-separation) / 0.999) !important;
+  background: light-dark(rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0.4)) !important; /* Slightly lighter dark with transparency */
+  backdrop-filter: blur(32px) saturate(140%) !important; /* Smooth blur effect */
+  
+  width: calc(var(--sidebar-width) - 0px) !important;
+  min-width: calc(var(--sidebar-width) - 8px) !important;
+  border-radius: 11px !important;
+  scale: 1 !important;
+  padding: 8px !important;
+  transition: left 0.2s cubic-bezier(0.175, 0.585, 0.32, 1.1) !important;
+  height: calc(100% - (var(--zen-element-separation) * 2.4)) !important;
+  margin: calc(var(--zen-element-separation) / 2) 0 !important; 
+}
+
+#browser::after {
+  opacity: 0 !important;
+  left: 0px !important;
+  width: calc(var(--sidebar-width) - 3px) !important;
+  min-width: calc(var(--sidebar-width) - 4px) !important;
+  border-radius: 10px !important;
+  margin-right: calc(var(--zen-element-separation) / 2) 0 !important;
+  margin-left: calc((var(--zen-element-separation) / 1.5)) !important;
+  margin-top: calc(var(--zen-element-separation) / 0.85) !important;
+  margin-bottom: calc(var(--zen-element-separation) / 2) !important;
+  height: calc(100% - (var(--zen-element-separation) * 3.2)) !important;
+  top: calc(var(--zen-element-separation) / 2) !important;
+  background-color: var(--toolbar-bgcolor) !important;
+  transition: left 0.2s cubic-bezier(0.175, 0.585, 0.32, 1.1), opacity 0.2s ease, filter 0.2s ease !important;
+}
+
+body:has([zen-compact-mode="true"] [zen-user-show=""], [zen-compact-mode="true"] [zen-has-hover="true"]) #browser::after {
+  opacity: 1 !important;
+  left: var(--zen-element-separation) !important;
 }
 
 /* === GENERAL SIDEBAR ====================================================================================================== */

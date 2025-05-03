@@ -1,17 +1,20 @@
 /* Credit: Natsumi v3 by greeeen-dev */
 
-/* ------------------ Media Player (new 1.10b) ----------------------- */
-
+/* ------------------ Media Player Styling ----------------------- */
 #zen-media-controls-toolbar > toolbaritem {
-  border-radius: 12px !important; /* Increased for more rounded corners */
-  box-shadow: 0 0px 9px light-dark(rgba(255, 255, 255, 0.55),rgba(0, 0, 0, 0.55)) !important;
+  border-radius: var(--nebula-border-radius) !important;
+
+  transition: border-radius 0.3s ease; /* optional for smooth transition */
+}
+
+#zen-media-controls-toolbar > toolbaritem:hover {
+  border-radius: 12px !important;
 }
 
 @keyframes fadein-animation {
   0% { opacity: 0; }
   100% { opacity: 0.2; }
 }
-
 /* Smooth Infinite Gradient Animation */
 @keyframes glowing-gradient {
   0% { background-position: 0% 50%; }
@@ -20,59 +23,93 @@
   75% { background-position: 50% 100%; }
   100% { background-position: 0% 50%; }
 }
-
+@keyframes miniplayer-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 0%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
+  100% { background-position: 0% 50%; }
+}
 #zen-media-current-time, #zen-media-duration {
   font-variant-numeric: tabular-nums;
 }
-
 #zen-media-controls-toolbar {
   & > toolbaritem {
     position: relative;
-    border-radius: 12px;
+    border-radius: var(--nebula-border-radius);
     overflow: hidden;
     transition: box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-
     /* Default Glass Effect */
-    background: light-dark(rgba(235, 235, 235, 0.4),rgba(20, 20, 20, 0.4)) !important;
-    backdrop-filter: blur(20px) !important;
-
+    background: light-dark(rgba(235, 235, 235, 0.4),rgba(20, 20, 20, 0.3)) !important;
     /* Gradient Layer (Initially Hidden) */
     &::before {
       content: "";
       position: absolute;
       inset: 0;
-  background: linear-gradient(
-  45deg,
-  color-mix(in srgb, var(--zen-primary-color) 5%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 30%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 75%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 100%, black), /* Peak highlight */
-  color-mix(in srgb, var(--zen-primary-color) 50%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 15%, black)  
-  );
-
-
+      background: linear-gradient(
+        45deg,
+        color-mix(in srgb, var(--zen-primary-color) 5%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 30%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 75%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 100%, black), /* Peak highlight */
+        color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+        color-mix(in srgb, var(--zen-primary-color) 15%, black)  
+      );
       background-size: 400% 400%;
+      animation: miniplayer-gradient 10s linear infinite;
       opacity: 0; /* Hidden by default */
-      filter: blur(30px);
+      filter: blur(10px) opacity(0.57);
       z-index: -1;
       transition: opacity 0.3s ease-in-out;
     }
-
-    /* Box Shadow Effect */
-    box-shadow: 0 4px 10px light-dark(rgba(255, 255, 255, 0.3),rgba(0, 0, 0, 0.3));
-
+    
     &:hover {
-        background: light-dark(rgba(235, 235, 235, 1), rgba(20, 20, 20, 1)) !important;
-        box-shadow: 0 6px 15px light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
-
-    /* Ensure the gradient layer stays visible */
-    &::before {
+      background: light-dark(rgba(235, 235, 235, 1), rgba(20, 20, 20, 1)) !important;
+      box-shadow: 0 6px 15px light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+      /* Ensure the gradient layer stays visible */
+      &::before {
         opacity: 0.3; /* Increase opacity */
         z-index: 0; /* Make sure it's not hidden under the main background */
         pointer-events: none;
+      }
     }
-   }
+  }
+
+  /* Style 0 - No gradient */
+  @media (-moz-pref("nebula-glow-gradient", 0)) {
+    & > toolbaritem::before {
+      display: none;
+    }
+  }
+
+  /* Monochrome gradient (Style 2) */
+  @media (-moz-pref("nebula-glow-gradient", 2)) {
+    & > toolbaritem::before {
+      background: linear-gradient(
+        45deg,  
+        light-dark(#dddddd, #ffffff),  
+        light-dark(#eeeeee, #dddddd),  
+        light-dark(#dddddd, #bbbbbb),  
+        light-dark(#ffffff, #000000),
+        light-dark(#eeeeee, #dddddd),  
+        light-dark(#dddddd, #ffffff)
+      );
+      background-size: 400% 400%;
+   
+      filter: blur(10px) opacity(0.57);
+      z-index: -1;
+    }
+  }
+
+  /* RGB gradient (Style 3) */
+  @media (-moz-pref("nebula-glow-gradient", 3)) {
+    & > toolbaritem::before {
+      background: linear-gradient(45deg, #ff8a00, #e52e71, #7f00ff, #00c9ff, #ff8a00);
+      background-size: 400% 400%;
+     
+      filter: blur(10px) opacity(0.57);
+      z-index: -1;
+    }
   }
 
   /* When playing, enable animation */
@@ -80,44 +117,35 @@
     opacity: 0.65; /* Visible glow */
     animation: glowing-gradient 10s infinite linear;
   }
-
   /* Enhance glow on hover when playing */
   &.playing > toolbaritem:hover::before {
     opacity: 0.6;
   }
-
   #zen-media-service-hbox {
     padding-top: 5px !important;
     transition: padding 0.15s ease-in-out !important;
   }
-
   #zen-media-title {
     font-weight: 720 !important;
   }
-
   #zen-media-artist {
     font-size: 10px !important;
   }
-
   #zen-media-info-vbox::before {
     display: none !important;
   }
-
   #zen-media-progress-bar {
     &::-moz-range-thumb {
       scale: 1;
       transition: scale 0.2s ease;
     }
-
     &::-moz-range-track, &::-moz-range-progress {
       transition: height 0.2s ease;
     }
-
     &:hover {
       &::-moz-range-thumb {
         scale: 1.4;
       }
-
       &::-moz-range-track, &::-moz-range-progress {
         height: calc(var(--progress-height) + 2px) !important;
       }
@@ -179,8 +207,8 @@
 /* Inner elements (timestamps) - With 0.2s delay */
 #zen-media-controls-toolbar .show-on-hover > * {
   opacity: 0;
-  transform: translateY(0.5rem);
-  filter: blur(8px);
+  transform: translateY(0);
+  filter: blur(0px);
   transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s, filter 0.3s ease 0.2s;
 }
 

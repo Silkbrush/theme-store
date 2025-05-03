@@ -15,7 +15,7 @@
     background: light-dark(rgba(255,255,255,0.32),rgba(0,0,0,0.3)) !important;
   }
   
-  @media (-moz-bool-pref: "zen.tabs.vertical.right-side") {
+  @media (-moz-pref("zen.tabs.vertical.right-side")) {
     #customization-container {
       left: 10px;
     }
@@ -28,7 +28,6 @@
   #customization-container #customization-panel-container {
     padding: 10px !important;
   }
-  
   
   #customization-container #customization-panelWrapper {
     --panel-arrow-offset: 0px;
@@ -45,7 +44,6 @@
     margin: 0px !important;
     border-radius: 8px;
   }
-  
   
   /* Check when the width is low */
   @media (max-width: 700px) { /* Adjust the threshold as needed */

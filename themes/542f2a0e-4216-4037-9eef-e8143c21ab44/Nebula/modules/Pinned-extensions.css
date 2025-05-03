@@ -30,9 +30,9 @@
     width: 32px !important;
     flex-grow: 1 !important;
     order: -1 !important;
-    background-color: light-dark(rgba(255,255,255,0.4), rgba(0,0,0,0.4)) !important;
+    background-color: light-dark(rgba(255,255,255,0.354), rgba(0,0,0,0.354)) !important;
     box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.2),rgba(0, 0, 0, 0.2)) !important;
-    border-radius: 11.5px !important;
+    border-radius: calc(var(--nebula-border-radius) - 0.5px) !important;
     transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
   }
 
@@ -66,7 +66,7 @@
   >toolbaritem {
     background-color: light-dark(rgba(255,255,255,0.4), rgba(0,0,0,0.4)) !important;
     box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0.12),rgba(0, 0, 0, 0.12)) !important;
-    border-radius: 13px !important;
+    border-radius: calc(var(--nebula-border-radius) + 1px) !important;
     margin: 0px !important;
     order: -1 !important;
     flex-grow: 1 !important;
@@ -81,54 +81,93 @@
 }
 /* -------- Hover animation gradient -------- */
 .unified-extensions-item {
-    position: relative !important;
-    border-radius: 11px !important;
+  position: relative !important;
+  border-radius: calc(var(--nebula-border-radius) - 1px) !important;
 }
 
-    /* Gradient hover effect */
-    .unified-extensions-item::before {
-        content: "";
-        position: absolute;
-        inset: -1px; /* Shrinks the effect area */
+.unified-extensions-item::before {
+  content: "";
+  position: absolute;
+  inset: -0.1px;
   background: linear-gradient(
-  45deg,
-  color-mix(in srgb, var(--zen-primary-color) 5%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 30%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 75%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 100%, black), /* Peak highlight */
-  color-mix(in srgb, var(--zen-primary-color) 50%, black),  
-  color-mix(in srgb, var(--zen-primary-color) 15%, black)  
+    45deg,
+    color-mix(in srgb, var(--zen-primary-color) 5%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 30%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 75%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 100%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 50%, black),  
+    color-mix(in srgb, var(--zen-primary-color) 15%, black)
   );
-        background-size: 200% 400%;
-        border-radius: 10px !important; /* Slightly smaller than button */
-        clip-path: inset(0 round 11px);
-        animation: ext-hover-gradient 6s linear infinite;
-        animation-play-state: paused;
-        opacity: 0;
-        filter: blur(10px) brightness(0.58);
-        transition: opacity 0.4s ease-in-out;
-        pointer-events: none;
-    }
+  background-size: 200% 400%;
+  border-radius: calc(var(--nebula-border-radius) - 2px) !important;
+  clip-path: inset(0 round calc(var(--nebula-border-radius) - 2px));
+  animation: ext-hover-gradient 6s linear infinite;
+  animation-play-state: paused;
+  opacity: 0;
+  filter: blur(20px) brightness(0.58);
+  transition: opacity 0.4s ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
 
-    /* Show gradient when hovering over the pinned extension */
-    .unified-extensions-item:hover::before {
-        animation-play-state: running;
-        opacity: 0.5;
-    }
+/* Glow on hover */
+.unified-extensions-item:hover::before {
+  animation-play-state: running;
+  opacity: 0.5;
+}
 
-    /* Hide gradient when hovering over close/reset buttons (if applicable) */
-    .unified-extensions-item:has(.close-button:hover, .reset-button:hover)::before {
-        opacity: 0;
-    }
+/* Hide glow when hovering close/reset */
+.unified-extensions-item:has(.close-button:hover, .reset-button:hover)::before {
+  opacity: 0;
+}
 
-    /* Gradient animation keyframes */
-    @keyframes ext-hover-gradient {
-        0% { background-position: 0% 50%; }
-        25% { background-position: 50% 0%; }
-        50% { background-position: 100% 50%; }
-        75% { background-position: 50% 100%; }
-        100% { background-position: 0% 50%; }
-    }
+/* Style 0 - No gradient */
+@media (-moz-pref("nebula-glow-gradient", 0)) {
+  .unified-extensions-item::before {
+    display: none;
+  }
+}
+
+/* Style 2 - Monochrome gradient */
+@media (-moz-pref("nebula-glow-gradient", 2)) {
+  .unified-extensions-item::before {
+    display: block;
+    background: linear-gradient(
+      45deg,  
+      light-dark(#dddddd, #ffffff),  
+      light-dark(#eeeeee, #dddddd),  
+      light-dark(#dddddd, #bbbbbb),  
+      light-dark(#ffffff, #000000),  
+      light-dark(#eeeeee, #dddddd),  
+      light-dark(#dddddd, #ffffff)
+    );
+    background-size: 200% 400%;
+    filter: blur(20px) brightness(0.88);
+  }
+}
+
+/* Style 3 - RGB gradient */
+@media (-moz-pref("nebula-glow-gradient", 3)) {
+  .unified-extensions-item::before {
+    display: block;
+    background: linear-gradient(
+      45deg, 
+      #ff8a00, #e52e71, #7f00ff, #00c9ff, #ff8a00
+    );
+    background-size: 200% 400%;
+    filter: blur(20px) brightness(0.88);
+  }
+}
+
+/* Gradient animation keyframes */
+@keyframes ext-hover-gradient {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 0%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
 
 /* ============ COMPACT EXTENSIONS (Credit: KiKaraage) ================== */
 #unified-extensions-view{

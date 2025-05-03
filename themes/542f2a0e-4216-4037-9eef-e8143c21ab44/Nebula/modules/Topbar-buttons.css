@@ -19,6 +19,8 @@
     filter: invert(1);
   }
 }
+
+
 /* ---------- Windows close buttons ----------- */
 .titlebar-close {
     transition: background-color 0.3s ease-out, transform 0.2s ease-in-out;

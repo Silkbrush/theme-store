@@ -1,7 +1,12 @@
 /* Credit: Natsumi v3 by greeeen-dev */
+/* Add rounded corners to player holder */
+.player-holder {
+  border-radius: 7.6px !important; /* Adjust the radius as needed */
+}
 
 /* ==== Natsumi PiP ==== */
-@media not (-moz-bool-pref: "natsumi.pip.disabled") {
+
+@media not -moz-pref("natsumi.pip.disabled") {
   @-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
     /*noinspection CssInvalidFunction*/
     * {
@@ -30,7 +35,7 @@
       --toolbarbutton-hover-background: color-mix(in srgb, light-dark(#1d1d1d, #ebebeb) 10%, transparent 90%);
       --toolbarbutton-active-background: light-dark(rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.11));
 
-      @media (-moz-bool-pref: "natsumi.theme.force-dark-shadows") {
+      @media -moz-pref("natsumi.theme.force-dark-shadows") {
         --natsumi-mat-ga-shadow-color: color-mix(in srgb, var(--natsumi-colors-secondary) 75%, black);
       }
     }
@@ -67,6 +72,18 @@
       }
     }
 
+    @media -moz-pref("natsumi.pip.rounded") {
+      /* This won't work on Linux (sadly), might be just a Gnome thing. */
+      /* If you're seeing this, create an issue if it does indeed work */
+
+      @media (-moz-platform: windows) {
+        window, html, body {
+          /* Share same radius as macOS for the sake of simplicity later */
+          border-radius: 9px !important;
+        }
+      }
+    }
+
     html {
       animation: pip-fadein-html 0.5s ease !important;
     }
@@ -90,9 +107,9 @@
         background-image: none !important;
         background-color: var(--natsumi-mat-hz-background) !important;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important;
-        border: none !important;
+        border: 2px solid light-dark(rgba(20, 20, 20, 0.1), rgba(235, 235, 235, 0.1)) !important;
 
-        @media (-moz-bool-pref: "natsumi.pip.tinted-haze") {
+        @media -moz-pref("natsumi.pip.tinted-haze") {
           background-color: var(--natsumi-mat-hz-background-tinted) !important;
         }
 
@@ -118,28 +135,19 @@
         &#close::before {
           content: url("chrome://browser/skin/zen-icons/close.svg") !important;
         }
-        
+
         &#minimize::before {
           content: url("chrome://browser/skin/zen-icons/unpin.svg") !important;
         }
-
-
 
         &#unpip::before {
           content: url("chrome://browser/skin/zen-icons/screen.svg") !important;
         }
 
-        &:hover {
-          background-color: color-mix(in srgb, var(--natsumi-mat-ga-background) 80%, white) !important;
+&:hover {
+  background-color: black !important;
+}
 
-          @media (prefers-color-scheme: light) {
-            background-color: color-mix(in srgb, var(--natsumi-mat-ga-background) 80%, black) !important;
-          }
-        }
-
-        &#close:hover, &#unpip:hover, &#minimize:hover {
-          background-color: #222222 !important; /* Dark on hover */
-        }
       }
 
       #controls-bottom-gradient {
@@ -154,22 +162,26 @@
         border-radius: 10px !important;
         padding: 10px 15px !important;
         margin: 0 5px !important;
-        width: calc(100% - 10px) !important;
+        margin-bottom: 5px !important;
+        width: min(calc(100% - 10px), 700px) !important;
         box-sizing: border-box !important;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important;
         backdrop-filter: saturate(3) contrast(2) blur(var(--natsumi-mat-hz-blur-radius)) !important;
         filter: blur(10px);
         transition: opacity 0.3s ease, bottom 0.3s ease, filter 0.3s ease !important;
-        border: none !important;
+        border: 2px solid light-dark(rgba(20, 20, 20, 0.1), rgba(235, 235, 235, 0.1)) !important;
+        left: calc(50% - 5px) !important;
+        transform: translateX(-50%) !important;
 
-        @media (-moz-bool-pref: "natsumi.pip.tinted-haze") {
+        @media -moz-pref("natsumi.pip.tinted-haze") {
           background-color: var(--natsumi-mat-hz-background-tinted) !important;
         }
 
-        @media (-moz-bool-pref: "natsumi.pip.native-border-radius") {
+        @media -moz-pref("natsumi.pip.native-border-radius") and (width <= 710px) {
           /* For the sake of adding native radius, we'll reduce the margin of the controls here */
-          width: 100% !important;
+          width: min(100%, 700px) !important;
           margin: 0 !important;
+          left: calc(50%) !important;
           bottom: -10px !important;
 
           /*
@@ -182,7 +194,9 @@
         }
 
         .start-controls {
-          display: flex !important;
+          @media (width > 300px) {
+            display: flex !important;
+          }
 
           /*noinspection CssInvalidFunction*/
           #timestamp {
@@ -199,9 +213,10 @@
           margin: 0 !important;
 
           /*noinspection CssInvalidFunction*/
-          &::-moz-range-progress {
-            background: #FFFFFF !important; /* White for progress bar */
-          }
+#scrubber::-moz-range-progress {
+  background: white !important;
+}
+
 
           /*noinspection CssInvalidFunction*/
           &::-moz-range-track {
@@ -210,18 +225,10 @@
 
           /*noinspection CssInvalidFunction*/
           &::-moz-range-thumb {
-            background-color: #FFFFFF !important; /* White to match progress bar */
+             background: white !important;
             width: 12px !important;
             height: 12px !important;
             border: none !important;
-            scale: 1;
-            transition: scale 0.2s ease;
-          }
-
-          &:hover {
-            &::-moz-range-thumb {
-              opacity: 1;
-            }
           }
         }
 
@@ -381,7 +388,7 @@
           backdrop-filter: blur(15px);
           filter: blur(0);
           transition: backdrop-filter 0.3s ease, filter 0.3s ease;
-          border: none !important;
+          border: 1px solid light-dark(rgba(20, 20, 20, 0.2), rgba(235, 235, 235, 0.3)) !important;
           box-shadow: 0 0 10px var(--natsumi-mat-ga-shadow-color) !important;
           padding: 0 !important;
         }
@@ -420,27 +427,31 @@
           }
         }
       }
+    }
 
-      &:hover {
-        & > button {
-          opacity: 1 !important;
-          top: 10px !important;
-          filter: blur(0) !important;
-        }
+    body:fullscreen #controls[showing]:hover, body:not(:fullscreen) #controls:hover {
+      & > button {
+        opacity: 1 !important;
+        top: 10px !important;
+        filter: blur(0) !important;
+      }
 
-        #controls-bottom {
-          opacity: 1 !important;
-          bottom: 5px !important;
-          filter: blur(0);
+      #controls-bottom {
+        opacity: 1 !important;
+        bottom: 5px !important;
+        filter: blur(0);
 
-          @media (-moz-bool-pref: "natsumi.pip.native-border-radius") {
-            bottom: 0 !important;
-          }
+        @media -moz-pref("natsumi.pip.native-border-radius") {
+          bottom: 0 !important;
         }
       }
     }
 
     body:fullscreen {
+      &:has(#controls:not([showing])) {
+        cursor: none !important;
+      }
+
       #controls {
         #controls-bottom {
           #fullscreen {
@@ -449,17 +460,5 @@
         }
       }
     }
-  }
-}
-
-@-moz-document url("chrome://global/content/pictureinpicture/player.xhtml") {
-  .player-holder {
-    border-radius: 8px !important;
-    overflow: hidden !important;
-    background: transparent !important;
-  }
-
-  html {
-    background: transparent !important;
   }
 }

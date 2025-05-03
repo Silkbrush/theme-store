@@ -16,13 +16,13 @@
     "542f2a0e-4216-4037-9eef-e8143c21ab44": {
         "type": 0,
         "name": "Nebula",
-        "description": "A glassmorphism inspired theme designed to elevate the experience of Zen Browser by changing the design and tons of new animations",
+        "description": "<h1 align=\"center\">Nebula</h1> <div align=\"center\">     <a href=\"https://zen-browser.app/\">         <img width=\"120\" alt=\"zen-badge-dark\" src=\"https://github.com/user-attachments/assets/d6ab3ddf-6630-4062-92d0-22497d2a3f9a\" />     </a> </div>",
         "author": "JustAdumbPrsn",
         "authorUrl": "https://github.com/JustAdumbPrsn",
         "homepage": "https://github.com/JustAdumbPrsn/Nebula-A-Minimal-Theme-for-Zen-Browser",
-        "version": "v2.1",
+        "version": "v2.4.1",
         "createdAt": 1743848289,
-        "updatedAt": 1743848289,
+        "updatedAt": 1746273244,
         "tags": [],
         "domains": [
             "Monkeytype.com"

@@ -1,0 +1,7 @@
+@import "Nebula/Nebula-content.css";
+
+@-moz-document domain(monkeytype.com) {
+    body {
+      background-color: rgba(15, 15, 20, 0.4) !important; /* Darker base color */
+    }
+  }
